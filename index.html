@@ -1,149 +1,997 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Housing Accountability Archive</title>
-  <meta name="description" content="Housing Accountability Archive is an independent public-interest housing documentation project by Walter Escobar.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Housing Accountability Archive | Documenting Housing. Advancing Accountability.</title>
+
+  <meta
+    name="description"
+    content="Housing Accountability Archive is an independent public-interest documentation project focused on publicly funded housing program administration, records verification, oversight transparency, and participant-centered accountability."
+  />
+
+  <meta name="author" content="Housing Accountability Archive" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Housing Accountability Archive" />
+  <meta
+    property="og:description"
+    content="Documenting Housing. Advancing Accountability. A records-based public-interest documentation project focused on publicly funded housing program administration."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.housingaccountabilityarchive.org" />
+
   <style>
+    :root {
+      --navy: #0b1f33;
+      --navy-2: #12324f;
+      --charcoal: #1f2933;
+      --slate: #52616b;
+      --muted: #6b7280;
+      --line: #d9e2ec;
+      --soft: #f5f7fa;
+      --white: #ffffff;
+      --gold: #b08d57;
+      --gold-soft: #efe5d2;
+      --max-width: 1120px;
+      --radius: 14px;
+      --shadow: 0 14px 35px rgba(11, 31, 51, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      color: #0f172a;
-      background: #f8fafc;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.65;
     }
 
-    header,
-    footer {
-      background: #0f172a;
-      color: white;
-      padding: 24px;
-    }
-
-    header a,
-    footer a {
-      color: white;
+    a {
+      color: var(--navy-2);
       text-decoration: none;
     }
 
-    main {
-      max-width: 900px;
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--gold);
+      z-index: 9999;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-wrap {
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
     }
 
-    section {
-      background: white;
-      border: 1px solid #dbe3ef;
-      border-radius: 16px;
-      padding: 28px;
-      margin: 24px 0;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
-    h1 {
-      font-size: 2.6rem;
-      line-height: 1.05;
-      margin: 0 0 12px;
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--navy);
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      background: var(--soft);
     }
 
-    h2 {
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.1rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.93rem;
+    }
+
+    nav a {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(11, 31, 51, 0.88), rgba(11, 31, 51, 0.92)),
+        radial-gradient(circle at top left, rgba(176, 141, 87, 0.3), transparent 32%);
+      color: var(--white);
+      padding: 6rem 1.25rem 5rem;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      color: var(--gold-soft);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.18;
+      color: var(--navy);
       margin-top: 0;
     }
 
-    h3 {
-      margin-bottom: 6px;
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(2.55rem, 6vw, 5rem);
+      margin-bottom: 0.75rem;
+      max-width: 930px;
     }
 
-    .muted {
-      color: #475569;
+    .tagline {
+      font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+      color: var(--gold-soft);
+      margin: 0 0 1.35rem;
+      font-style: italic;
     }
 
-    .notice {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #172554;
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 20px;
+    .hero-copy {
+      max-width: 840px;
+      font-size: 1.18rem;
+      color: #eef4f8;
+      margin-bottom: 2rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 2rem;
     }
 
     .button {
       display: inline-block;
-      background: #64748b;
-      color: white;
-      padding: 12px 16px;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .button.primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .button.secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    main {
+      background: var(--white);
+    }
+
+    section {
+      padding: 4.5rem 1.25rem;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-lede {
+      font-size: 1.15rem;
+      max-width: 850px;
+      color: var(--slate);
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: 0 8px 24px rgba(11, 31, 51, 0.06);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--slate);
+    }
+
+    .soft-section {
+      background: var(--soft);
+    }
+
+    .review-box {
+      background: var(--white);
+      border-left: 6px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+
+    .review-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 1.4rem;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 1.25rem 0;
+    }
+
+    .review-meta div {
+      padding: 0.75rem;
+      background: var(--soft);
+      border: 1px solid var(--line);
       border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
+    }
+
+    .review-meta strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.4rem 1.6rem;
+      border-left: 6px solid var(--gold);
+      background: var(--soft);
+      color: var(--navy);
+      font-size: 1.35rem;
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .authority-list {
+      counter-reset: authority;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .authority-list li {
+      counter-increment: authority;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.25rem 1.25rem 4rem;
+      position: relative;
+    }
+
+    .authority-list li::before {
+      content: counter(authority);
+      position: absolute;
+      left: 1.1rem;
+      top: 1.2rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .authority-list strong {
+      color: var(--navy);
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .plain-list {
+      padding-left: 1.2rem;
+      margin: 0;
+      color: var(--slate);
+    }
+
+    .plain-list li {
+      margin-bottom: 0.55rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: table;
+    }
+
+    th,
+    td {
+      padding: 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .notice {
+      border: 1px solid var(--gold);
+      background: #fffaf0;
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      color: var(--charcoal);
+    }
+
+    .contact-panel {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2,
+    .contact-panel h3 {
+      color: var(--white);
+    }
+
+    .contact-panel a {
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2rem 1.25rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .footer-inner a {
+      color: var(--gold-soft);
+    }
+
+    .small {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .white-small {
+      font-size: 0.92rem;
+      color: #d9e2ec;
+    }
+
+    @media (max-width: 860px) {
+      .menu-toggle {
+        display: inline-block;
+      }
+
+      nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 75px;
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+        display: none;
+      }
+
+      nav.open {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.25rem;
+      }
+
+      .grid.two,
+      .grid.three,
+      .review-meta {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3.5rem 1rem;
+      }
+
+      .hero {
+        padding: 4.5rem 1rem;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
     }
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
   <header>
-    <strong>Housing Accountability Archive</strong>
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="Housing Accountability Archive home">
+        <span class="brand-mark">HAA</span>
+        <span>Housing Accountability Archive</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">
+        Menu
+      </button>
+
+      <nav id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#current-review">Current Review</a></li>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#records-verification">Records Verification</a></li>
+          <li><a href="#confidentiality">Confidentiality</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <h1>Housing Accountability Archive</h1>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">Independent Public-Interest Documentation</div>
+        <h1>Housing Accountability Archive</h1>
+        <p class="tagline">Documenting Housing. Advancing Accountability.</p>
+        <p class="hero-copy">
+          Housing Accountability Archive is an independent public-interest documentation project
+          focused on publicly funded housing program administration, records verification,
+          oversight transparency, and participant-centered accountability.
+        </p>
+        <p class="hero-copy">
+          HAA reviews policies, public records, monitoring materials, administrative correspondence,
+          and participant-level documentation to evaluate whether required housing-program actions
+          can be verified through records.
+        </p>
 
-    <p class="muted">
-      Housing Accountability Archive (HAA) is an independent public-interest documentation project by Walter Escobar.
-    </p>
-
-    <div class="notice">
-      HAA is not a government agency, law firm, or tax-exempt nonprofit organization. Materials are published for documentation, education, administrative review, and public accountability.
-    </div>
-
-    <section>
-      <h2>Mission</h2>
-
-      <p>
-        The mission of Housing Accountability Archive is to document how housing systems affect participants after placement, during transitions, and through administrative decision-making.
-      </p>
-
-      <ol>
-        <li>Preserve records related to housing administration and participant experience.</li>
-        <li>Document supportive-service accountability and service-delivery gaps.</li>
-        <li>Organize timelines, communications, policies, and oversight materials for public review.</li>
-        <li>Support transparency, administrative review, and informed housing oversight.</li>
-      </ol>
+        <div class="button-row">
+          <a class="button primary" href="#current-review">View Current Review</a>
+          <a class="button secondary" href="#records-verification">Records Verification Process</a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Audit</h2>
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-kicker">About HAA</div>
+        <h2 class="section-title">A records-based accountability publication.</h2>
+        <p class="section-lede">
+          Housing Accountability Archive was created to examine whether publicly funded housing
+          programs can verify administrative compliance through records. The project focuses on
+          documentation, oversight transparency, participant-facing procedures, and administrative
+          systems that affect housing stability.
+        </p>
 
-      <h3>Annual Audit Cycle Compliance Review</h3>
+        <div class="grid two">
+          <div class="card">
+            <h3>Mission</h3>
+            <p>
+              HAA documents housing-program administration, identifies records-verification gaps,
+              and supports public accountability through structured review of policies, monitoring
+              records, correspondence, and participant-level documentation.
+            </p>
+          </div>
 
-      <p class="muted">
-        <strong>Program Year 2025–2026</strong>
-      </p>
+          <div class="card">
+            <h3>Review Principle</h3>
+            <p>
+              HAA does not begin with assumptions about legal fault or misconduct. Its review model
+              asks whether required actions, safeguards, services, communications, and oversight
+              steps can be verified through documentary evidence.
+            </p>
+          </div>
+        </div>
 
-      <p>
-        This audit concerns housing administration, participant communications, supportive-service documentation, and accountability issues related to HOPWA-funded housing and service systems.
-      </p>
+        <blockquote>
+          When governing authorities require documentation, can the required administrative record
+          actually be produced?
+        </blockquote>
 
-      <p><strong>Author:</strong> Walter Escobar</p>
-      <p><strong>Audit Year:</strong> Program Year 2025–2026</p>
-      <p><strong>Status:</strong> Forthcoming</p>
+        <div class="grid two">
+          <div class="card">
+            <h3>What HAA Is</h3>
+            <ul class="plain-list">
+              <li>An independent documentation project.</li>
+              <li>A public-interest archive.</li>
+              <li>A records-based review model.</li>
+              <li>A participant-centered accountability publication.</li>
+            </ul>
+          </div>
 
-      <a class="button" href="#">Audit Report Coming Soon</a>
+          <div class="card">
+            <h3>What HAA Is Not</h3>
+            <ul class="plain-list">
+              <li>HAA is not a government agency.</li>
+              <li>HAA is not a law firm.</li>
+              <li>HAA is not a legal-services provider.</li>
+              <li>HAA is not an official investigative authority.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section" id="current-review">
+      <div class="section-inner">
+        <div class="section-kicker">Current Review</div>
+        <h2 class="section-title">HAA-2026-001</h2>
+
+        <div class="review-box">
+          <h3>Publicly Funded Housing Program Administration</h3>
+          <p>
+            <em>
+              A Records-Based Review of Administrative Documentation, Program Oversight,
+              and Participant-Level Verification
+            </em>
+          </p>
+
+          <div class="review-meta">
+            <div>
+              <strong>Publication Series</strong>
+              Annual Compliance Review
+            </div>
+            <div>
+              <strong>Version</strong>
+              2.0 | Authority Stack Review
+            </div>
+            <div>
+              <strong>Review Period</strong>
+              July 2025 through July 2026
+            </div>
+            <div>
+              <strong>Status</strong>
+              Records Verification Draft
+            </div>
+          </div>
+
+          <p>
+            HAA-2026-001 evaluates whether participant-facing housing program administration
+            can be independently verified through documentary evidence.
+          </p>
+
+          <p>
+            The review examines administrative responsibility, provider policies, participant-file
+            documentation, housing-plan records, supportive-service records, monitoring reports,
+            grievance routing, records retention, and administrative continuity.
+          </p>
+
+          <div class="notice">
+            <strong>Publication Notice:</strong>
+            No full evidence packet or sensitive participant-level file is published during the
+            verification stage. Findings, exhibits, entity responses, nonresponses, and records-access
+            updates may be incorporated into the final review as appropriate.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-inner">
+        <div class="section-kicker">Methodology</div>
+        <h2 class="section-title">Authority Stack Review Model</h2>
+        <p class="section-lede">
+          HAA applies an authority-stack methodology comparing governing standards against
+          actual records. The purpose is to identify what documentation should exist, who should
+          maintain it, whether it was produced, and what remains unresolved.
+        </p>
+
+        <ol class="authority-list">
+          <li>
+            <strong>Federal Authority</strong>
+            Federal statutes, regulations, program requirements, civil-rights standards,
+            confidentiality obligations, and administrative-control requirements.
+          </li>
+          <li>
+            <strong>Local Administrative Authority</strong>
+            Local housing department policies, procedures, monitoring standards, reporting
+            requirements, and oversight expectations.
+          </li>
+          <li>
+            <strong>Provider Authority</strong>
+            Provider policies, procedures, participant-facing forms, grievance procedures,
+            service standards, and subcontractor oversight requirements.
+          </li>
+          <li>
+            <strong>Monitoring Records</strong>
+            Official monitoring reports, sampled-file findings, corrective-action records,
+            site-visit records, and administrative follow-up.
+          </li>
+          <li>
+            <strong>Participant Documentary Record</strong>
+            Participant-level records, correspondence, notices, requests, responses,
+            file-access history, and entity communications.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="soft-section" id="domains">
+      <div class="section-inner">
+        <div class="section-kicker">Review Domains</div>
+        <h2 class="section-title">Compliance domains under review.</h2>
+        <p class="section-lede">
+          Each domain is reviewed using the same structure: applicable authorities, administrative
+          standard, required documentation, evidence reviewed, observations, verification status,
+          recommendations, and evidence IDs.
+        </p>
+
+        <div class="grid three">
+          <div class="card">
+            <h3>Governance</h3>
+            <p>Administrative responsibility, oversight roles, sponsor accountability, and subcontractor coordination.</p>
+          </div>
+          <div class="card">
+            <h3>Participant Files</h3>
+            <p>Eligibility, assessments, housing plans, case notes, referrals, and required client-file documentation.</p>
+          </div>
+          <div class="card">
+            <h3>Supportive Services</h3>
+            <p>Service planning, referrals, housing-search support, follow-up, transition planning, and documentation.</p>
+          </div>
+          <div class="card">
+            <h3>Housing Quality</h3>
+            <p>Site visits, inspections, room-entry controls, habitability documentation, and privacy safeguards.</p>
+          </div>
+          <div class="card">
+            <h3>Grievance Routing</h3>
+            <p>Intake, jurisdiction, routing, response windows, determination records, and participant-facing instructions.</p>
+          </div>
+          <div class="card">
+            <h3>Records Access</h3>
+            <p>Records availability, retention, custody, public-records production, and file-access procedures.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="records-verification">
+      <div class="section-inner">
+        <div class="section-kicker">Records Verification</div>
+        <h2 class="section-title">Verification before publication.</h2>
+        <p class="section-lede">
+          HAA uses a records-based verification process before finalizing major reviews.
+          The purpose is not to litigate facts in public. The purpose is to determine whether
+          the administrative record can substantiate required actions, services, safeguards,
+          and oversight steps.
+        </p>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Verification Questions</h3>
+            <ul class="plain-list">
+              <li>What authority applies?</li>
+              <li>What administrative action was required?</li>
+              <li>What records should exist?</li>
+              <li>Who should maintain those records?</li>
+              <li>Were the records produced or identified?</li>
+              <li>Are records missing, incomplete, disputed, or pending?</li>
+              <li>What verification status applies?</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Entity Responses</h3>
+            <p>
+              Entities receiving a records-verification notice may respond only as to records
+              within their custody, control, routing history, or program responsibility.
+            </p>
+            <p>
+              Responses may state that records exist, do not exist, are partially available,
+              are held by another custodian, were transferred, were destroyed under a retention
+              policy, are pending review, are disputed, or require clarification.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Verification Ratings</h3>
+        <table aria-label="Verification ratings">
+          <thead>
+            <tr>
+              <th>Rating</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Verified</td>
+              <td>Required documentation was produced or directly confirmed.</td>
+            </tr>
+            <tr>
+              <td>Substantially Verified</td>
+              <td>Core documentation exists, with minor gaps.</td>
+            </tr>
+            <tr>
+              <td>Partially Verified</td>
+              <td>Some records exist, but key elements remain missing.</td>
+            </tr>
+            <tr>
+              <td>Indeterminate</td>
+              <td>Available records are insufficient to verify either way.</td>
+            </tr>
+            <tr>
+              <td>Not Verified</td>
+              <td>Required records were requested or expected but not produced, identified, or confirmed.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="notice" style="margin-top: 1.5rem;">
+          <strong>Important Note:</strong>
+          Records-verification requests are not intended to replace public-records requests,
+          grievances, appeals, legal proceedings, or formal oversight investigations. They provide
+          a structured opportunity to clarify the administrative record before publication or further
+          escalation.
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section" id="confidentiality">
+      <div class="section-inner">
+        <div class="section-kicker">Confidentiality</div>
+        <h2 class="section-title">Sensitive information is handled with restraint.</h2>
+        <p class="section-lede">
+          HAA’s purpose is accountability through documentation, not unnecessary disclosure
+          of private participant information.
+        </p>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Sensitive Information</h3>
+            <p>HAA limits disclosure of:</p>
+            <ul class="plain-list">
+              <li>medical information;</li>
+              <li>financial records;</li>
+              <li>identity documents;</li>
+              <li>personal-property details;</li>
+              <li>private correspondence;</li>
+              <li>participant-file materials;</li>
+              <li>sensitive housing-location details;</li>
+              <li>personal contact information;</li>
+              <li>records involving third parties.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Verification Stage</h3>
+            <p>
+              During records-verification stages, HAA may limit communications to issue
+              categories, record descriptions, verification questions, authority references,
+              custody questions, and status summaries.
+            </p>
+            <p>
+              HAA does not transmit a full evidence packet when doing so would unnecessarily
+              disclose sensitive information.
+            </p>
+          </div>
+        </div>
+
+        <blockquote>
+          Public accountability does not require careless exposure of private records.
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-inner">
+        <div class="contact-panel">
+          <div class="section-kicker" style="color: var(--gold-soft);">Contact</div>
+          <h2>Contact Housing Accountability Archive</h2>
+          <p>
+            For records-verification correspondence, publication inquiries, and administrative
+            review matters:
+          </p>
+
+          <p>
+            <strong>Records:</strong>
+            <a href="mailto:Records@HousingAccountabilityArchive.org">
+              Records@HousingAccountabilityArchive.org
+            </a>
+            <br />
+            <strong>General Contact:</strong>
+            <a href="mailto:Contact@HousingAccountabilityArchive.org">
+              Contact@HousingAccountabilityArchive.org
+            </a>
+            <br />
+            <strong>Website:</strong>
+            <a href="https://www.HousingAccountabilityArchive.org">
+              https://www.HousingAccountabilityArchive.org
+            </a>
+          </p>
+
+          <h3>Current Review Reference</h3>
+          <p>
+            <strong>HAA-2026-001</strong><br />
+            Publicly Funded Housing Program Administration<br />
+            Status: Records Verification Draft
+          </p>
+
+          <p class="white-small">
+            Please include the relevant HAA reference number in correspondence when available.
+          </p>
+
+          <p class="white-small">
+            Housing Accountability Archive is an independent public-interest documentation
+            project. HAA does not provide legal representation, legal advice, case management,
+            or emergency housing services.
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p><strong>Housing Accountability Archive (HAA)</strong></p>
+    <div class="footer-inner">
+      <div>
+        <strong>Housing Accountability Archive</strong><br />
+        Documenting Housing. Advancing Accountability.
+      </div>
 
-    <p>
-      Independent public-interest housing documentation project by Walter Escobar.
-    </p>
+      <div>
+        <a href="mailto:Records@HousingAccountabilityArchive.org">
+          Records@HousingAccountabilityArchive.org
+        </a>
+      </div>
 
-    <p>
-      <a href="https://walterescobar.org">WalterEscobar.org</a> |
-      <a href="mailto:walter@walterescobar.org">walter@walterescobar.org</a>
-    </p>
+      <div class="white-small">
+        HAA is an independent public-interest documentation project and is not affiliated with
+        any government agency, housing provider, or legal-services organization.
+      </div>
+
+      <div class="white-small">
+        © 2026 Housing Accountability Archive. All rights reserved.
+      </div>
+    </div>
   </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("#site-nav");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll("#site-nav a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 </body>
 </html>
