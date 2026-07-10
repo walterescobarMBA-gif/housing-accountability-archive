@@ -101,6 +101,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+      position: relative;
     }
 
     .brand {
@@ -110,6 +111,10 @@
       color: var(--navy);
       font-weight: 700;
       letter-spacing: 0.02em;
+    }
+
+    .brand:hover {
+      text-decoration: none;
     }
 
     .brand-mark {
@@ -124,6 +129,28 @@
       letter-spacing: 0.04em;
       color: var(--navy);
       background: var(--soft);
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+
+    .brand-subtitle {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.15rem;
     }
 
     nav ul {
@@ -139,7 +166,7 @@
 
     nav a {
       color: var(--charcoal);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .menu-toggle {
@@ -174,7 +201,7 @@
       font-size: 0.78rem;
       color: var(--gold-soft);
       margin-bottom: 1rem;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     h1,
@@ -203,7 +230,35 @@
       max-width: 840px;
       font-size: 1.18rem;
       color: #eef4f8;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-callout {
+      max-width: 820px;
+      margin-top: 2rem;
+      padding: 1.25rem 1.4rem;
+      border-left: 5px solid var(--gold);
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .hero-callout-label {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--gold-soft);
+      margin-bottom: 0.45rem;
+    }
+
+    .hero-callout p {
+      margin: 0;
+      color: var(--white);
+      font-size: 1.25rem;
+      line-height: 1.45;
+      font-style: italic;
     }
 
     .button-row {
@@ -218,7 +273,7 @@
       padding: 0.85rem 1.1rem;
       border-radius: 999px;
       font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid transparent;
     }
 
@@ -530,6 +585,31 @@
         display: block;
         overflow-x: auto;
       }
+
+      .brand-title {
+        font-size: 0.95rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        font-size: 0.74rem;
+      }
+
+      .hero-callout p {
+        font-size: 1.08rem;
+      }
+
+      .button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -541,7 +621,10 @@
     <div class="nav-wrap">
       <a class="brand" href="#home" aria-label="Housing Accountability Archive home">
         <span class="brand-mark">HAA</span>
-        <span>Housing Accountability Archive</span>
+        <span class="brand-text">
+          <span class="brand-title">Housing Accountability Archive</span>
+          <span class="brand-subtitle">Public-Interest Documentation</span>
+        </span>
       </a>
 
       <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">
@@ -553,7 +636,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#current-review">Current Review</a></li>
           <li><a href="#method">Method</a></li>
-          <li><a href="#records-verification">Records Verification</a></li>
+          <li><a href="#records-verification">Verification</a></li>
           <li><a href="#confidentiality">Confidentiality</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -565,18 +648,30 @@
     <section class="hero" id="home">
       <div class="hero-inner">
         <div class="eyebrow">Independent Public-Interest Documentation</div>
+
         <h1>Housing Accountability Archive</h1>
+
         <p class="tagline">Documenting Housing. Advancing Accountability.</p>
+
         <p class="hero-copy">
           Housing Accountability Archive is an independent public-interest documentation project
           focused on publicly funded housing program administration, records verification,
           oversight transparency, and participant-centered accountability.
         </p>
+
         <p class="hero-copy">
           HAA reviews policies, public records, monitoring materials, administrative correspondence,
           and participant-level documentation to evaluate whether required housing-program actions
           can be verified through records.
         </p>
+
+        <div class="hero-callout" aria-label="Guiding review question">
+          <span class="hero-callout-label">Guiding Question</span>
+          <p>
+            When governing authorities require documentation, can the required administrative record
+            actually be produced?
+          </p>
+        </div>
 
         <div class="button-row">
           <a class="button primary" href="#current-review">View Current Review</a>
@@ -589,6 +684,7 @@
       <div class="section-inner">
         <div class="section-kicker">About HAA</div>
         <h2 class="section-title">A records-based accountability publication.</h2>
+
         <p class="section-lede">
           Housing Accountability Archive was created to examine whether publicly funded housing
           programs can verify administrative compliance through records. The project focuses on
@@ -617,8 +713,8 @@
         </div>
 
         <blockquote>
-          When governing authorities require documentation, can the required administrative record
-          actually be produced?
+          HAA asks what documentation should exist, who should maintain it, whether it was produced,
+          and what remains unresolved.
         </blockquote>
 
         <div class="grid two">
@@ -652,6 +748,7 @@
 
         <div class="review-box">
           <h3>Publicly Funded Housing Program Administration</h3>
+
           <p>
             <em>
               A Records-Based Review of Administrative Documentation, Program Oversight,
@@ -703,6 +800,7 @@
       <div class="section-inner">
         <div class="section-kicker">Methodology</div>
         <h2 class="section-title">Authority Stack Review Model</h2>
+
         <p class="section-lede">
           HAA applies an authority-stack methodology comparing governing standards against
           actual records. The purpose is to identify what documentation should exist, who should
@@ -743,36 +841,60 @@
       <div class="section-inner">
         <div class="section-kicker">Review Domains</div>
         <h2 class="section-title">Compliance domains under review.</h2>
+
         <p class="section-lede">
-          Each domain is reviewed using the same structure: applicable authorities, administrative
-          standard, required documentation, evidence reviewed, observations, verification status,
-          recommendations, and evidence IDs.
+          Each domain is reviewed using the same structure: applicable authorities,
+          administrative standard, required documentation, evidence reviewed, observations,
+          verification status, recommendations, and evidence IDs.
         </p>
 
         <div class="grid three">
           <div class="card">
             <h3>Governance</h3>
-            <p>Administrative responsibility, oversight roles, sponsor accountability, and subcontractor coordination.</p>
+            <p>
+              Administrative responsibility, oversight roles, sponsor accountability,
+              and subcontractor coordination.
+            </p>
           </div>
+
           <div class="card">
             <h3>Participant Files</h3>
-            <p>Eligibility, assessments, housing plans, case notes, referrals, and required client-file documentation.</p>
+            <p>
+              Eligibility, assessments, housing plans, case notes, referrals,
+              and required client-file documentation.
+            </p>
           </div>
+
           <div class="card">
             <h3>Supportive Services</h3>
-            <p>Service planning, referrals, housing-search support, follow-up, transition planning, and documentation.</p>
+            <p>
+              Service planning, referrals, housing-search support, follow-up,
+              transition planning, and documentation.
+            </p>
           </div>
+
           <div class="card">
             <h3>Housing Quality</h3>
-            <p>Site visits, inspections, room-entry controls, habitability documentation, and privacy safeguards.</p>
+            <p>
+              Site visits, inspections, room-entry controls, habitability documentation,
+              and privacy safeguards.
+            </p>
           </div>
+
           <div class="card">
             <h3>Grievance Routing</h3>
-            <p>Intake, jurisdiction, routing, response windows, determination records, and participant-facing instructions.</p>
+            <p>
+              Intake, jurisdiction, routing, response windows, determination records,
+              and participant-facing instructions.
+            </p>
           </div>
+
           <div class="card">
             <h3>Records Access</h3>
-            <p>Records availability, retention, custody, public-records production, and file-access procedures.</p>
+            <p>
+              Records availability, retention, custody, public-records production,
+              and file-access procedures.
+            </p>
           </div>
         </div>
       </div>
@@ -782,6 +904,7 @@
       <div class="section-inner">
         <div class="section-kicker">Records Verification</div>
         <h2 class="section-title">Verification before publication.</h2>
+
         <p class="section-lede">
           HAA uses a records-based verification process before finalizing major reviews.
           The purpose is not to litigate facts in public. The purpose is to determine whether
@@ -809,6 +932,7 @@
               Entities receiving a records-verification notice may respond only as to records
               within their custody, control, routing history, or program responsibility.
             </p>
+
             <p>
               Responses may state that records exist, do not exist, are partially available,
               are held by another custodian, were transferred, were destroyed under a retention
@@ -818,6 +942,7 @@
         </div>
 
         <h3 style="margin-top: 2rem;">Verification Ratings</h3>
+
         <table aria-label="Verification ratings">
           <thead>
             <tr>
@@ -825,23 +950,28 @@
               <th>Meaning</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
               <td>Verified</td>
               <td>Required documentation was produced or directly confirmed.</td>
             </tr>
+
             <tr>
               <td>Substantially Verified</td>
               <td>Core documentation exists, with minor gaps.</td>
             </tr>
+
             <tr>
               <td>Partially Verified</td>
               <td>Some records exist, but key elements remain missing.</td>
             </tr>
+
             <tr>
               <td>Indeterminate</td>
               <td>Available records are insufficient to verify either way.</td>
             </tr>
+
             <tr>
               <td>Not Verified</td>
               <td>Required records were requested or expected but not produced, identified, or confirmed.</td>
@@ -863,6 +993,7 @@
       <div class="section-inner">
         <div class="section-kicker">Confidentiality</div>
         <h2 class="section-title">Sensitive information is handled with restraint.</h2>
+
         <p class="section-lede">
           HAA’s purpose is accountability through documentation, not unnecessary disclosure
           of private participant information.
@@ -872,6 +1003,7 @@
           <div class="card">
             <h3>Sensitive Information</h3>
             <p>HAA limits disclosure of:</p>
+
             <ul class="plain-list">
               <li>medical information;</li>
               <li>financial records;</li>
@@ -887,11 +1019,13 @@
 
           <div class="card">
             <h3>Verification Stage</h3>
+
             <p>
               During records-verification stages, HAA may limit communications to issue
               categories, record descriptions, verification questions, authority references,
               custody questions, and status summaries.
             </p>
+
             <p>
               HAA does not transmit a full evidence packet when doing so would unnecessarily
               disclose sensitive information.
@@ -909,7 +1043,9 @@
       <div class="section-inner">
         <div class="contact-panel">
           <div class="section-kicker" style="color: var(--gold-soft);">Contact</div>
+
           <h2>Contact Housing Accountability Archive</h2>
+
           <p>
             For records-verification correspondence, publication inquiries, and administrative
             review matters:
@@ -933,6 +1069,7 @@
           </p>
 
           <h3>Current Review Reference</h3>
+
           <p>
             <strong>HAA-2026-001</strong><br />
             Publicly Funded Housing Program Administration<br />
