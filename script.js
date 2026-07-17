@@ -7,9 +7,33 @@ if (menuToggle && siteNav) {
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
   });
+
+  siteNav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+      menuToggle.focus();
+    }
+  });
 }
 
 const archiveItems = [
+  {
+    type: "learn",
+    title: "HAA Learning Center",
+    summary: "Evergreen guides to housing administration, supportive services, participant pathways, documentation, and accountability.",
+    href: "learn.html",
+    keywords: "learn education administration supportive services participant pathway documentation accountability"
+  },
   {
     type: "review",
     title: "Current review status",
