@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Housing Accountability Archive</title>
+  <desc id="desc">Documenting Housing. Advancing Accountability.</desc>
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="72" y="72" width="12" height="486" rx="6" fill="#2563eb"/>
+  <path d="M958 222l86-66 86 66v114H958V222Z" fill="#dbeafe" opacity=".96"/>
+  <path d="M996 336v-86h96v86" fill="#2563eb"/>
+  <path d="M1008 290h72" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+  <text x="132" y="218" fill="#93c5fd" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="2">PUBLIC-INTEREST RECORDS LITERACY</text>
+  <text x="132" y="300" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="700">Housing Accountability</text>
+  <text x="132" y="366" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="700">Archive</text>
+  <text x="132" y="454" fill="#cbd5e1" font-family="Arial, Helvetica, sans-serif" font-size="25">Documenting Housing. Advancing Accountability.</text>
+</svg>

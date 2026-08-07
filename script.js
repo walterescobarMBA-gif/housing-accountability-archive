@@ -28,6 +28,27 @@ if (menuToggle && siteNav) {
 
 const archiveItems = [
   {
+    type: "site",
+    title: "Housing Accountability Archive",
+    summary: "The public homepage for HAA's educational resources, records methodology, confidentiality safeguards, and current-review status.",
+    href: "index.html",
+    keywords: "home housing accountability archive public interest records literacy"
+  },
+  {
+    type: "site",
+    title: "About",
+    summary: "An overview of Publicly Funded Housing Program Administration as the subject of HAA's current review series.",
+    href: "about.html",
+    keywords: "about current review series publicly funded housing program administration"
+  },
+  {
+    type: "learn",
+    title: "What Housing Accountability Archive Is",
+    summary: "HAA's independent role, public-interest purpose, limits, review method, and confidentiality principles.",
+    href: "about-haa.html",
+    keywords: "about HAA independent participant founded methodology limits confidentiality"
+  },
+  {
     type: "learn",
     title: "HAA Learning Center",
     summary: "Evergreen guides to housing administration, supportive services, participant pathways, documentation, and accountability.",
@@ -37,16 +58,23 @@ const archiveItems = [
   {
     type: "review",
     title: "Current review status",
-    summary: "Open public-interest questions about oversight, review routing, records handling, and stabilization controls.",
+    summary: "A neutral status page for the unpublished review's records-development and reconciliation process.",
     href: "current-review.html",
     keywords: "current review oversight routing stabilization controls"
   },
   {
+    type: "review",
+    title: "Administrative Oversight Referral HAA-OR-2026-001",
+    summary: "A public procedural-status entry for a referral submitted to the Los Angeles City Controller.",
+    href: "oversight-action-haa-or-2026-001.html",
+    keywords: "oversight action referral controller FWA0003652 pending intake review"
+  },
+  {
     type: "records",
-    title: "Records verification",
-    summary: "How the archive distinguishes public summaries, redacted materials, controlled records, and private evidence.",
+    title: "Methodology and Records Verification",
+    summary: "HAA's source hierarchy, verification statuses, response and correction process, version control, and publication limits.",
     href: "records-verification.html",
-    keywords: "records verification redacted controlled private evidence public summary"
+    keywords: "methodology records verification sources status response correction version publication limits"
   },
   {
     type: "privacy",
@@ -57,10 +85,66 @@ const archiveItems = [
   },
   {
     type: "framework",
-    title: "Publicly Funded Housing Program Administration",
-    summary: "A systems frame for reviewing administrative displacement and housing stability in publicly funded programs.",
-    href: "about.html",
-    keywords: "publicly funded housing program administration hopwa systems accountability"
+    title: "How Publicly Funded Housing Administration Works",
+    summary: "A plain-language guide to federal authorization, local administration, project sponsors, delivery, monitoring, and participant records.",
+    href: "housing-administration.html",
+    keywords: "publicly funded housing administration authority grantee sponsor contractor oversight records"
+  },
+  {
+    type: "framework",
+    title: "Administrative Displacement",
+    summary: "The related conceptual-framework initiative for examining when administrative process becomes a housing consequence.",
+    href: "https://administrativedisplacement.org/",
+    keywords: "administrative displacement related initiative conceptual framework housing consequence"
+  },
+  {
+    type: "learn",
+    title: "What Supportive Services Are Supposed to Accomplish",
+    summary: "How assessed needs, service planning, delivery, referrals, follow-up, and outcomes can support housing stability.",
+    href: "supportive-services.html",
+    keywords: "supportive services needs plan provider referral delivery follow up housing stability"
+  },
+  {
+    type: "learn",
+    title: "What a Participant Pathway to Housing Stability Should Look Like",
+    summary: "A flexible ten-stage pathway and HAA's clearly labeled Participant Pathway Feasibility framework.",
+    href: "participant-pathway.html",
+    keywords: "participant pathway feasibility intake assessment housing plan transition follow up stabilization"
+  },
+  {
+    type: "records",
+    title: "Why Documentation Matters",
+    summary: "How administrative receipts support continuity, participant rights, provider management, oversight, and outcomes.",
+    href: "documentation-matters.html",
+    keywords: "documentation administrative receipts intake assessment case notes referrals outcomes"
+  },
+  {
+    type: "learn",
+    title: "How Administrative Accountability Benefits Participants and Providers",
+    summary: "Accountability as a practical management and public-interest tool for participants, providers, funders, and oversight bodies.",
+    href: "accountability-benefits.html",
+    keywords: "accountability participants providers funders oversight management benefits"
+  },
+  {
+    type: "site",
+    title: "Contact",
+    summary: "Public contact channels for corrections, responses, research, and records-verification correspondence.",
+    href: "contact.html",
+    keywords: "contact corrections response research records email"
+  },
+  {
+    type: "site",
+    title: "Updates",
+    summary: "A concise version history for public site improvements and publication-status changes.",
+    href: "updates.html",
+    keywords: "updates version history site publication changes"
+  },
+  {
+    type: "site",
+    title: "Page Not Found",
+    summary: "The archive's navigation page for an unavailable or incorrect public URL.",
+    href: "404.html",
+    keywords: "404 missing page not found return home"
   }
 ];
 
@@ -106,6 +190,7 @@ function renderArchiveExplorer() {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.archiveFilter || "all";
       buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
+      buttons.forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
       render();
     });
   });
@@ -144,6 +229,7 @@ function setupFilterableCards() {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.filterButton || "all";
       buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
+      buttons.forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
       applyFilter();
     });
   });
