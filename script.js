@@ -2,6 +2,13 @@ const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
 if (menuToggle && siteNav) {
+  const closeNavigation = ({ returnFocus = false } = {}) => {
+    siteNav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    if (returnFocus) menuToggle.focus();
+  };
+
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -9,194 +16,101 @@ if (menuToggle && siteNav) {
   });
 
   siteNav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) {
-      siteNav.classList.remove("is-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation");
-    }
+    if (event.target.closest("a")) closeNavigation();
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
-      siteNav.classList.remove("is-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation");
-      menuToggle.focus();
+      closeNavigation({ returnFocus: true });
     }
   });
 }
 
-const archiveItems = [
-  {
-    type: "site",
-    title: "Housing Accountability Archive",
-    summary: "The public homepage for HAA's educational resources, records methodology, confidentiality safeguards, and current-review status.",
-    href: "index.html",
-    keywords: "home housing accountability archive public interest records literacy"
-  },
-  {
-    type: "site",
-    title: "About",
-    summary: "An overview of Publicly Funded Housing Program Administration as the subject of HAA's current review series.",
-    href: "about.html",
-    keywords: "about current review series publicly funded housing program administration"
-  },
-  {
-    type: "learn",
-    title: "What Housing Accountability Archive Is",
-    summary: "HAA's independent role, public-interest purpose, limits, review method, and confidentiality principles.",
-    href: "about-haa.html",
-    keywords: "about HAA independent participant founded methodology limits confidentiality"
-  },
-  {
-    type: "learn",
-    title: "HAA Learning Center",
-    summary: "Evergreen guides to housing administration, supportive services, participant pathways, documentation, and accountability.",
-    href: "learn.html",
-    keywords: "learn education administration supportive services participant pathway documentation accountability"
-  },
-  {
-    type: "review",
-    title: "Current review status",
-    summary: "A neutral status page for the unpublished review's records-development and reconciliation process.",
-    href: "current-review.html",
-    keywords: "current review oversight routing stabilization controls"
-  },
-  {
-    type: "review",
-    title: "Administrative Oversight Referral HAA-OR-2026-001",
-    summary: "A public procedural-status entry for a referral submitted to the Los Angeles City Controller.",
-    href: "oversight-action-haa-or-2026-001.html",
-    keywords: "oversight action referral controller FWA0003652 pending intake review"
-  },
-  {
-    type: "records",
-    title: "Methodology and Records Verification",
-    summary: "HAA's source hierarchy, verification statuses, response and correction process, version control, and publication limits.",
-    href: "records-verification.html",
-    keywords: "methodology records verification sources status response correction version publication limits"
-  },
-  {
-    type: "privacy",
-    title: "Confidentiality protocol",
-    summary: "Publication limits for sensitive participant-level records, health information, addresses, and third-party identities.",
-    href: "confidentiality.html",
-    keywords: "confidentiality privacy medical health participant records addresses"
-  },
-  {
-    type: "framework",
-    title: "How Publicly Funded Housing Administration Works",
-    summary: "A plain-language guide to federal authorization, local administration, project sponsors, delivery, monitoring, and participant records.",
-    href: "housing-administration.html",
-    keywords: "publicly funded housing administration authority grantee sponsor contractor oversight records"
-  },
-  {
-    type: "framework",
-    title: "Administrative Displacement",
-    summary: "The related conceptual-framework initiative for examining when administrative process becomes a housing consequence.",
-    href: "https://administrativedisplacement.org/",
-    keywords: "administrative displacement related initiative conceptual framework housing consequence"
-  },
-  {
-    type: "learn",
-    title: "What Supportive Services Are Supposed to Accomplish",
-    summary: "How assessed needs, service planning, delivery, referrals, follow-up, and outcomes can support housing stability.",
-    href: "supportive-services.html",
-    keywords: "supportive services needs plan provider referral delivery follow up housing stability"
-  },
-  {
-    type: "learn",
-    title: "What a Participant Pathway to Housing Stability Should Look Like",
-    summary: "A flexible ten-stage pathway and HAA's clearly labeled Participant Pathway Feasibility framework.",
-    href: "participant-pathway.html",
-    keywords: "participant pathway feasibility intake assessment housing plan transition follow up stabilization"
-  },
-  {
-    type: "records",
-    title: "Why Documentation Matters",
-    summary: "How administrative receipts support continuity, participant rights, provider management, oversight, and outcomes.",
-    href: "documentation-matters.html",
-    keywords: "documentation administrative receipts intake assessment case notes referrals outcomes"
-  },
-  {
-    type: "learn",
-    title: "How Administrative Accountability Benefits Participants and Providers",
-    summary: "Accountability as a practical management and public-interest tool for participants, providers, funders, and oversight bodies.",
-    href: "accountability-benefits.html",
-    keywords: "accountability participants providers funders oversight management benefits"
-  },
-  {
-    type: "site",
-    title: "Contact",
-    summary: "Public contact channels for corrections, responses, research, and records-verification correspondence.",
-    href: "contact.html",
-    keywords: "contact corrections response research records email"
-  },
-  {
-    type: "site",
-    title: "Updates",
-    summary: "A concise version history for public site improvements and publication-status changes.",
-    href: "updates.html",
-    keywords: "updates version history site publication changes"
-  },
-  {
-    type: "site",
-    title: "Page Not Found",
-    summary: "The archive's navigation page for an unavailable or incorrect public URL.",
-    href: "404.html",
-    keywords: "404 missing page not found return home"
-  }
-];
+function setupArchiveExplorer() {
+  const explorer = document.querySelector("[data-archive-explorer]");
+  if (!explorer) return;
 
-function renderArchiveExplorer() {
-  const search = document.querySelector("[data-archive-search]");
-  const results = document.querySelector("[data-archive-results]");
-  const count = document.querySelector("[data-archive-count]");
-  const buttons = Array.from(document.querySelectorAll("[data-archive-filter]"));
+  const search = explorer.querySelector("[data-archive-search]");
+  const count = explorer.querySelector("[data-archive-count]");
+  const countLabel = explorer.querySelector("[data-archive-count-label]");
+  const empty = explorer.querySelector("[data-archive-empty]");
+  const buttons = Array.from(explorer.querySelectorAll("[data-archive-filter]"));
+  const items = Array.from(explorer.querySelectorAll("[data-archive-item]"));
 
-  if (!search || !results || !count || buttons.length === 0) return;
+  if (!search || !count || !countLabel || !empty || buttons.length === 0 || items.length === 0) return;
 
   let activeFilter = "all";
 
-  const render = () => {
-    const query = search.value.trim().toLowerCase();
-    const matches = archiveItems.filter((item) => {
-      const haystack = `${item.type} ${item.title} ${item.summary} ${item.keywords}`.toLowerCase();
-      const matchesFilter = activeFilter === "all" || item.type === activeFilter;
-      return matchesFilter && (!query || haystack.includes(query));
-    });
-
-    count.textContent = String(matches.length);
-    results.innerHTML = "";
-
-    if (matches.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "empty-state";
-      empty.textContent = "No matching pathway. Try a broader term or use All.";
-      results.append(empty);
-      return;
-    }
-
-    matches.forEach((item) => {
-      const link = document.createElement("a");
-      link.className = "archive-result";
-      link.href = item.href;
-      link.innerHTML = `<span>${item.type}</span><strong>${item.title}</strong><p>${item.summary}</p>`;
-      results.append(link);
+  const setActiveButton = (activeButton) => {
+    activeFilter = activeButton.dataset.archiveFilter || "all";
+    buttons.forEach((button) => {
+      const isActive = button === activeButton;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+      button.tabIndex = isActive ? 0 : -1;
     });
   };
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      activeFilter = button.dataset.archiveFilter || "all";
-      buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
-      buttons.forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
-      render();
+  const applyFilters = () => {
+    const query = search.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    items.forEach((item) => {
+      const type = item.dataset.type || "";
+      const haystack = `${item.textContent} ${item.dataset.keywords || ""}`.toLowerCase();
+      const matchesFilter = activeFilter === "all" || type === activeFilter;
+      const matchesSearch = !query || haystack.includes(query);
+      const isVisible = matchesFilter && matchesSearch;
+      item.hidden = !isVisible;
+      if (isVisible) visibleCount += 1;
     });
+
+    count.textContent = String(visibleCount);
+    countLabel.textContent = visibleCount === 1 ? " matching pathway" : " matching pathways";
+    const hasCriteria = Boolean(query) || activeFilter !== "all";
+    empty.hidden = visibleCount > 0 || !hasCriteria;
+  };
+
+  const activateFilter = (button) => {
+    setActiveButton(button);
+    if (activeFilter === "all") search.value = "";
+    applyFilters();
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => activateFilter(button));
   });
 
-  search.addEventListener("input", render);
-  render();
+  explorer.querySelector(".filter-bar")?.addEventListener("keydown", (event) => {
+    const currentButton = event.target.closest("[data-archive-filter]");
+    if (!currentButton) return;
+
+    const currentIndex = buttons.indexOf(currentButton);
+    let nextIndex;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (currentIndex + 1) % buttons.length;
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = buttons.length - 1;
+    if (nextIndex === undefined) return;
+
+    event.preventDefault();
+    const nextButton = buttons[nextIndex];
+    activateFilter(nextButton);
+    nextButton.focus();
+  });
+
+  search.addEventListener("input", applyFilters);
+
+  explorer.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || (!search.value && activeFilter === "all")) return;
+    event.preventDefault();
+    search.value = "";
+    setActiveButton(buttons[0]);
+    applyFilters();
+    search.focus();
+  });
+
+  applyFilters();
 }
 
 function setupFilterableCards() {
@@ -238,5 +152,5 @@ function setupFilterableCards() {
   applyFilter();
 }
 
-renderArchiveExplorer();
+setupArchiveExplorer();
 setupFilterableCards();

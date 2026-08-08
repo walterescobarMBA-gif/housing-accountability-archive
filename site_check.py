@@ -19,6 +19,21 @@ PROJECT_DESCRIPTION = "An independent, participant-founded public-interest docum
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 SENSITIVE_EXTENSIONS = {".7z", ".csv", ".doc", ".docx", ".eml", ".heic", ".jpeg", ".jpg", ".msg", ".pdf", ".png", ".pst", ".tif", ".tiff", ".xls", ".xlsx", ".zip"}
 ALLOWED_BINARY = {Path("assets/og-preview.png")}
+SCOPE_NOTE = (
+    "These educational models describe common administrative principles and draw primarily "
+    "from HUD HOPWA authorities and guidance. Program-specific requirements vary, and cited "
+    "HOPWA authorities should not be treated as governing other housing programs unless "
+    "independently applicable."
+)
+LEARNING_AUTHORITY_PAGES = {
+    "about-haa.html",
+    "accountability-benefits.html",
+    "documentation-matters.html",
+    "housing-administration.html",
+    "participant-pathway.html",
+    "supportive-services.html",
+}
+GUIDEBOOK_URL = "https://files.hudexchange.info/resources/documents/HOPWARentalAssistanceGuidebook.pdf"
 
 
 class Document(HTMLParser):
@@ -81,6 +96,8 @@ def main() -> int:
     expected_nav: list[str] | None = None
     public_pages = {path.name for path in html_files if path.name != "404.html"}
     parsed: dict[str, Document] = {}
+    public_titles: dict[str, str] = {}
+    public_descriptions: dict[str, str] = {}
 
     for path in html_files:
         text = path.read_text(encoding="utf-8")
@@ -96,8 +113,10 @@ def main() -> int:
             fail(errors, path.name, "missing UTF-8 charset")
         if 'name="viewport"' not in text:
             fail(errors, path.name, "missing responsive viewport metadata")
-        if '<a class="skip-link" href="#main">' not in text or '<main id="main">' not in text:
-            fail(errors, path.name, "skip link or main target is missing")
+        if '<a class="skip-link" href="#main">' not in text or '<main id="main" tabindex="-1">' not in text:
+            fail(errors, path.name, "skip link or focusable main target is missing")
+        if 'document.documentElement.classList.add("js")' not in text:
+            fail(errors, path.name, "progressive-enhancement marker is missing")
         if doc.stack:
             fail(errors, path.name, f"unclosed elements: {', '.join(doc.stack[-5:])}")
         for message in doc.errors:
@@ -111,21 +130,56 @@ def main() -> int:
         metas = [attrs for tag, attrs in doc.attrs if tag == "meta"]
         links = [attrs for tag, attrs in doc.attrs if tag == "link"]
         title = "".join(doc.title_parts).strip()
-        required_meta = {
-            "description": any(meta.get("name") == "description" and meta.get("content") for meta in metas),
-            "og:title": any(meta.get("property") == "og:title" and meta.get("content") for meta in metas),
-            "og:description": any(meta.get("property") == "og:description" and meta.get("content") for meta in metas),
-            "og:image": any(meta.get("property") == "og:image" and meta.get("content") == f"{DOMAIN}/assets/og-preview.png" for meta in metas),
-        }
+        meta_names = {meta.get("name"): meta.get("content") for meta in metas if meta.get("name")}
+        meta_properties = {meta.get("property"): meta.get("content") for meta in metas if meta.get("property")}
+        description = meta_names.get("description", "").strip()
         if not title:
             fail(errors, path.name, "missing title")
-        for label, present in required_meta.items():
-            if not present:
-                fail(errors, path.name, f"missing required {label}")
         canonical = next((link.get("href") for link in links if link.get("rel") == "canonical"), None)
-        expected_canonical = f"{DOMAIN}/" if path.name == "index.html" else f"{DOMAIN}/{path.name}"
-        if canonical != expected_canonical:
-            fail(errors, path.name, f"canonical must remain {expected_canonical}")
+        if path.name == "404.html":
+            robots = {token.strip().lower() for token in meta_names.get("robots", "").split(",")}
+            if robots != {"noindex", "nofollow"}:
+                fail(errors, path.name, "404 page must use noindex, nofollow")
+            if canonical is not None:
+                fail(errors, path.name, "404 page must not declare a canonical URL")
+        else:
+            expected_canonical = f"{DOMAIN}/" if path.name == "index.html" else f"{DOMAIN}/{path.name}"
+            public_titles[path.name] = title
+            public_descriptions[path.name] = description
+            if not description:
+                fail(errors, path.name, "missing required description")
+            if "| HAA" in title:
+                fail(errors, path.name, "title uses an abbreviated brand name")
+            if canonical != expected_canonical:
+                fail(errors, path.name, f"canonical must remain {expected_canonical}")
+            required_social = {
+                "og:title": bool(meta_properties.get("og:title")),
+                "og:description": bool(meta_properties.get("og:description")),
+                "og:type": bool(meta_properties.get("og:type")),
+                "og:url": meta_properties.get("og:url") == expected_canonical,
+                "og:image": meta_properties.get("og:image") == f"{DOMAIN}/assets/og-preview.png",
+                "twitter:card": meta_names.get("twitter:card") == "summary_large_image",
+                "twitter:title": meta_names.get("twitter:title") == meta_properties.get("og:title"),
+                "twitter:description": meta_names.get("twitter:description") == meta_properties.get("og:description"),
+                "twitter:image": meta_names.get("twitter:image") == f"{DOMAIN}/assets/og-preview.png",
+            }
+            for label, present in required_social.items():
+                if not present:
+                    fail(errors, path.name, f"missing or inconsistent required {label}")
+            for property_name in ("og:title", "og:description", "og:type", "og:url", "og:image"):
+                if sum(meta.get("property") == property_name for meta in metas) != 1:
+                    fail(errors, path.name, f"expected exactly one {property_name} declaration")
+            for name in ("description", "twitter:card", "twitter:title", "twitter:description", "twitter:image"):
+                if sum(meta.get("name") == name for meta in metas) != 1:
+                    fail(errors, path.name, f"expected exactly one {name} declaration")
+
+        if path.name in LEARNING_AUTHORITY_PAGES:
+            if text.count(SCOPE_NOTE) != 1:
+                fail(errors, path.name, "required HAA-OR educational-authority scope note is missing or duplicated")
+            if GUIDEBOOK_URL in text and not re.search(
+                rf'<a href="{re.escape(GUIDEBOOK_URL)}">[^<]*\(PDF\)</a>', text
+            ):
+                fail(errors, path.name, "public guidebook link must be labeled as a PDF")
 
         nav_match = re.search(r'<nav class="site-nav"[^>]*>(.*?)</nav>', text, re.S)
         if not nav_match:
@@ -169,6 +223,15 @@ def main() -> int:
                 if not target.exists():
                     fail(errors, path.name, f"broken internal {attr}: {value}")
 
+    for label, values in (("title", public_titles), ("description", public_descriptions)):
+        duplicates: dict[str, list[str]] = {}
+        for page, value in values.items():
+            duplicates.setdefault(value, []).append(page)
+        for value, pages in duplicates.items():
+            if not value or len(pages) == 1:
+                continue
+            fail(errors, "metadata", f"duplicate {label} on {', '.join(sorted(pages))}: {value}")
+
     sitemap = ET.parse(ROOT / "sitemap.xml").getroot()
     namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     sitemap_pages: set[str] = set()
@@ -187,11 +250,55 @@ def main() -> int:
     if sitemap_pages != public_pages:
         fail(errors, "sitemap.xml", f"coverage mismatch: missing={sorted(public_pages-sitemap_pages)}, extra={sorted(sitemap_pages-public_pages)}")
 
+    home_doc = parsed["index.html"]
+    archive_items = [attrs for tag, attrs in home_doc.attrs if tag == "a" and "data-archive-item" in attrs]
+    indexed = {
+        urlparse(item.get("href", "")).path.rsplit("/", 1)[-1]
+        for item in archive_items
+        if item.get("href", "").endswith(".html") and not item.get("href", "").startswith(("http://", "https://"))
+    }
+    if indexed != public_pages:
+        fail(errors, "index.html", f"archive coverage mismatch: missing={sorted(public_pages-indexed)}, extra={sorted(indexed-public_pages)}")
+    archive_hrefs = {item.get("href", "") for item in archive_items}
+    required_external_pathways = {
+        "https://administrativedisplacement.org/",
+        "https://administrativedisplacement.org/concept-note/",
+    }
+    missing_external = required_external_pathways - archive_hrefs
+    if missing_external:
+        fail(errors, "index.html", f"archive is missing external pathways: {sorted(missing_external)}")
+    if "404.html" in archive_hrefs:
+        fail(errors, "index.html", "404 page must not appear in the public archive index")
+
+    home_text = (ROOT / "index.html").read_text(encoding="utf-8")
+    count_match = re.search(r'data-archive-count>(\d+)</strong>', home_text)
+    if not count_match:
+        fail(errors, "index.html", "server-rendered archive count is missing")
+    elif int(count_match.group(1)) != len(archive_items) or int(count_match.group(1)) == 0:
+        fail(errors, "index.html", f"server-rendered archive count must equal {len(archive_items)}")
+    if any("hidden" in item for item in archive_items):
+        fail(errors, "index.html", "archive pathways must be visible in the initial server-rendered state")
+    archive_status = next(
+        (attrs for tag, attrs in home_doc.attrs if tag == "p" and "data-archive-status" in attrs),
+        {},
+    )
+    if (
+        archive_status.get("role") != "status"
+        or archive_status.get("aria-live") != "polite"
+        or archive_status.get("aria-atomic") != "true"
+    ):
+        fail(errors, "index.html", "archive status must be an atomic polite live region")
+    if not re.search(r'<noscript>.*All \d+ pathways are listed below\..*</noscript>', home_text, re.S):
+        fail(errors, "index.html", "archive explorer needs an honest no-JavaScript fallback")
+    if not re.search(r'data-archive-empty hidden', home_text):
+        fail(errors, "index.html", "archive empty state must be hidden before criteria are applied")
+
     script = (ROOT / "script.js").read_text(encoding="utf-8")
-    indexed = set(re.findall(r'href:\s*"([^"]+\.html)"', script))
-    all_html = {path.name for path in html_files}
-    if indexed != all_html:
-        fail(errors, "script.js", f"archive coverage mismatch: missing={sorted(all_html-indexed)}, extra={sorted(indexed-all_html)}")
+    for key in ("ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown", "Home", "End", "Escape"):
+        if f'"{key}"' not in script:
+            fail(errors, "script.js", f"archive keyboard behavior is missing {key}")
+    if 'if (activeFilter === "all") search.value = "";' not in script:
+        fail(errors, "script.js", "All filter must clear search and restore every pathway")
 
     if lastmods:
         latest = date.fromisoformat(max(lastmods))
@@ -200,7 +307,6 @@ def main() -> int:
             if expected_footer_date not in path.read_text(encoding="utf-8"):
                 fail(errors, path.name, f"footer date is stale; expected {expected_footer_date}")
 
-    home_text = (ROOT / "index.html").read_text(encoding="utf-8")
     required_home_text = [
         "HAA-OR-2026-001",
         "Submitted to Los Angeles City Controller",

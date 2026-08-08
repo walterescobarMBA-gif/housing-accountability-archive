@@ -2,7 +2,7 @@
   --navy: #0f172a;
   --ink: #172033;
   --slate: #334155;
-  --muted: #64748b;
+  --muted: #526076;
   --line: #dbe3ee;
   --soft: #f6f8fb;
   --white: #ffffff;
@@ -50,8 +50,15 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #93c5fd;
+  outline: 3px solid #1d4ed8;
   outline-offset: 3px;
+}
+
+.site-header a:focus-visible,
+.site-header button:focus-visible,
+.hero-inner > div a:focus-visible,
+.site-footer a:focus-visible {
+  outline-color: #f8cc4e;
 }
 
 .skip-link {
@@ -164,7 +171,8 @@ textarea:focus-visible {
 }
 
 .site-nav a:hover,
-.site-nav a[aria-current="page"] {
+.site-nav a[aria-current="page"],
+.site-nav a[aria-current="location"] {
   color: var(--white);
   background: rgba(255, 255, 255, 0.1);
 }
@@ -197,11 +205,15 @@ main {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #93c5fd;
+  color: #1e40af;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.hero-inner > div .eyebrow {
+  color: #bfdbfe;
 }
 
 h1,
@@ -284,6 +296,12 @@ h3 {
 .filter-count {
   margin: 0;
   color: var(--muted);
+}
+
+.archive-no-script {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .archive-stats strong,
@@ -880,19 +898,22 @@ h3 {
     flex-wrap: wrap;
   }
 
-  .menu-toggle {
+  .js .menu-toggle {
     display: inline-flex;
   }
 
   .site-nav {
-    display: none;
     width: 100%;
     padding: 0 0 18px;
     align-items: stretch;
     flex-direction: column;
   }
 
-  .site-nav.is-open {
+  .js .site-nav {
+    display: none;
+  }
+
+  .js .site-nav.is-open {
     display: flex;
   }
 
