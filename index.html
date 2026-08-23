@@ -3,65 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.add("js");</script>
-  <title>Housing Accountability Archive | Documenting Housing. Advancing Accountability.</title>
-  <meta name="description" content="An independent, participant-founded public-interest documentation and records-verification project offering housing administration education and publication safeguards.">
+  <title>Housing Accountability Archive | Publicly Funded Housing Program Administration</title>
+  <meta name="description" content="Public-interest archive examining administrative displacement, records verification, confidentiality, and housing stability in Publicly Funded Housing Program Administration.">
   <meta property="og:title" content="Housing Accountability Archive">
-  <meta name="twitter:title" content="Housing Accountability Archive">
-  <meta property="og:description" content="An independent, participant-founded public-interest documentation and records-verification project.">
-  <meta name="twitter:description" content="An independent, participant-founded public-interest documentation and records-verification project.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://housingaccountabilityarchive.org/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://housingaccountabilityarchive.org/assets/og-preview.png">
-  <meta name="twitter:image" content="https://housingaccountabilityarchive.org/assets/og-preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Housing Accountability Archive — Documenting Housing. Advancing Accountability.">
-  <meta name="twitter:image:alt" content="Housing Accountability Archive — Documenting Housing. Advancing Accountability.">
+  <meta property="og:description" content="A public-interest archive for reviewing housing stability, administrative displacement, records access, and oversight questions.">
   <link rel="canonical" href="https://housingaccountabilityarchive.org/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260808">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://housingaccountabilityarchive.org/#organization",
-          "name": "Housing Accountability Archive",
-          "url": "https://housingaccountabilityarchive.org/",
-          "description": "An independent, participant-founded public-interest documentation and records-verification project."
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://housingaccountabilityarchive.org/#website",
-          "name": "Housing Accountability Archive",
-          "url": "https://housingaccountabilityarchive.org/",
-          "publisher": { "@id": "https://housingaccountabilityarchive.org/#organization" }
-        },
-        {
-          "@type": "CreativeWork",
-          "@id": "https://administrativedisplacement.org/#initiative",
-          "name": "Administrative Displacement",
-          "url": "https://administrativedisplacement.org/",
-          "sameAs": ["https://administrativedisplacement.org/"],
-          "description": "A conceptual framework for examining when administrative process becomes a housing consequence.",
-          "publisher": { "@id": "https://housingaccountabilityarchive.org/#organization" }
-        }
-      ]
-    }
-  </script>
+  <link rel="stylesheet" href="styles.css?v=20260822">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Documenting Housing. Advancing Accountability.</span></a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-lines"></span></button>
-      <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Publicly Funded Housing Program Administration</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span class="menu-toggle-lines"></span></button>
+      <nav class="site-nav" aria-label="Primary navigation">
         <a href="index.html" aria-current="page">Home</a>
-        <a href="about.html">About</a><a href="learn.html">Learn</a><a href="https://administrativedisplacement.org/" rel="external">Administrative Displacement</a>
+        <a href="about.html">About</a>
+        <a href="participant-support.html">Participant Support</a>
         <a href="current-review.html">Current Review</a>
         <a href="records-verification.html">Records Verification</a>
         <a href="confidentiality.html">Confidentiality</a>
@@ -69,119 +28,66 @@
       </nav>
     </div>
   </header>
-  <main id="main" tabindex="-1">
+  <main id="main">
     <section class="hero">
       <div class="hero-inner">
         <div>
           <p class="eyebrow">Housing Accountability Archive</p>
           <h1>Records-centered review of housing stability systems.</h1>
-          <p>An independent, participant-founded public-interest documentation and records-verification project.</p>
-          <p><strong>Publicly Funded Housing Program Administration</strong> is HAA's current review series and subject—not the site's tagline.</p>
+          <p>This archive examines administrative displacement, records access, oversight routing, and participant burden in Publicly Funded Housing Program Administration.</p>
           <p>The site is built for public-interest review without exposing sensitive participant-level records, medical details, private addresses, or controlled evidence.</p>
           <div class="actions">
             <a class="button" href="current-review.html">Open Current Review</a>
             <a class="button secondary" href="records-verification.html">Check Records Protocol</a>
           </div>
         </div>
-        <aside class="archive-panel" aria-label="Archive explorer" data-archive-explorer>
+        <aside class="archive-panel" aria-label="Archive explorer">
           <p class="eyebrow">Interactive index</p>
           <h2>Find the review path</h2>
           <label for="archive-search">Search topics</label>
           <input id="archive-search" class="search-input" type="search" placeholder="Search oversight, records, confidentiality..." data-archive-search>
-          <div class="filter-bar" role="toolbar" aria-label="Archive topic filters">
-            <button class="filter-button is-active" type="button" data-archive-filter="all" aria-pressed="true">All</button>
-            <button class="filter-button" type="button" data-archive-filter="site" aria-pressed="false" tabindex="-1">Site</button>
-            <button class="filter-button" type="button" data-archive-filter="review" aria-pressed="false" tabindex="-1">Review</button>
-            <button class="filter-button" type="button" data-archive-filter="records" aria-pressed="false" tabindex="-1">Records</button>
-            <button class="filter-button" type="button" data-archive-filter="privacy" aria-pressed="false" tabindex="-1">Privacy</button>
-            <button class="filter-button" type="button" data-archive-filter="framework" aria-pressed="false" tabindex="-1">Framework</button>
-            <button class="filter-button" type="button" data-archive-filter="learn" aria-pressed="false" tabindex="-1">Learn</button>
+          <div class="filter-bar" role="group" aria-label="Archive topic filters">
+            <button class="filter-button is-active" type="button" data-archive-filter="all">All</button>
+            <button class="filter-button" type="button" data-archive-filter="navigation">Navigation</button>
+            <button class="filter-button" type="button" data-archive-filter="review">Review</button>
+            <button class="filter-button" type="button" data-archive-filter="records">Records</button>
+            <button class="filter-button" type="button" data-archive-filter="privacy">Privacy</button>
+            <button class="filter-button" type="button" data-archive-filter="framework">Framework</button>
           </div>
-          <p class="archive-stats" role="status" aria-live="polite" aria-atomic="true" data-archive-status><strong data-archive-count>17</strong><span data-archive-count-label> matching pathways</span></p>
-          <noscript><p class="archive-no-script">Search and filters require JavaScript. All 17 pathways are listed below.</p></noscript>
-          <div class="archive-results" data-archive-results>
-            <a class="archive-result" href="index.html" data-archive-item data-type="site" data-keywords="home housing accountability archive public interest records literacy"><span>site</span><strong>Housing Accountability Archive</strong><p>The public homepage for HAA's educational resources, records methodology, confidentiality safeguards, and current-review status.</p></a>
-            <a class="archive-result" href="about.html" data-archive-item data-type="site" data-keywords="about current review series publicly funded housing program administration"><span>site</span><strong>About</strong><p>An overview of Publicly Funded Housing Program Administration as the subject of HAA's current review series.</p></a>
-            <a class="archive-result" href="about-haa.html" data-archive-item data-type="learn" data-keywords="about HAA independent participant founded methodology limits confidentiality"><span>learn</span><strong>What Housing Accountability Archive Is</strong><p>HAA's independent role, public-interest purpose, limits, review method, and confidentiality principles.</p></a>
-            <a class="archive-result" href="learn.html" data-archive-item data-type="learn" data-keywords="learn education administration supportive services participant pathway documentation accountability"><span>learn</span><strong>HAA Learning Center</strong><p>Evergreen guides to housing administration, supportive services, participant pathways, documentation, and accountability.</p></a>
-            <a class="archive-result" href="current-review.html" data-archive-item data-type="review" data-keywords="current review oversight routing stabilization controls"><span>review</span><strong>Current review status</strong><p>A neutral status page for the unpublished review's records-development and reconciliation process.</p></a>
-            <a class="archive-result" href="oversight-action-haa-or-2026-001.html" data-archive-item data-type="review" data-keywords="oversight action referral controller FWA0003652 pending intake review"><span>review</span><strong>Administrative Oversight Referral HAA-OR-2026-001</strong><p>A public procedural-status entry for a referral submitted to the Los Angeles City Controller.</p></a>
-            <a class="archive-result" href="records-verification.html" data-archive-item data-type="records" data-keywords="methodology records verification sources status response correction version publication limits"><span>records</span><strong>Methodology and Records Verification</strong><p>HAA's source hierarchy, verification statuses, response and correction process, version control, and publication limits.</p></a>
-            <a class="archive-result" href="confidentiality.html" data-archive-item data-type="privacy" data-keywords="confidentiality privacy medical health participant records addresses"><span>privacy</span><strong>Confidentiality protocol</strong><p>Publication limits for sensitive participant-level records, health information, addresses, and third-party identities.</p></a>
-            <a class="archive-result" href="housing-administration.html" data-archive-item data-type="framework" data-keywords="publicly funded housing administration authority grantee sponsor contractor oversight records"><span>framework</span><strong>How Publicly Funded Housing Administration Works</strong><p>A plain-language guide to federal authorization, local administration, project sponsors, delivery, monitoring, and participant records.</p></a>
-            <a class="archive-result" href="https://administrativedisplacement.org/" rel="external" data-archive-item data-type="framework" data-keywords="administrative displacement related initiative conceptual framework housing consequence"><span>framework</span><strong>Administrative Displacement</strong><p>The related conceptual-framework initiative for examining when administrative process becomes a housing consequence.</p></a>
-            <a class="archive-result" href="https://administrativedisplacement.org/concept-note/" rel="external" data-archive-item data-type="framework" data-keywords="administrative displacement concept note version 1 publication framework"><span>framework</span><strong>Administrative Displacement Concept Note, Version 1.0</strong><p>The related initiative's foundational concept note, published August 2, 2026.</p></a>
-            <a class="archive-result" href="supportive-services.html" data-archive-item data-type="learn" data-keywords="supportive services needs plan provider referral delivery follow up housing stability"><span>learn</span><strong>What Supportive Services Are Supposed to Accomplish</strong><p>How assessed needs, service planning, delivery, referrals, follow-up, and outcomes can support housing stability.</p></a>
-            <a class="archive-result" href="participant-pathway.html" data-archive-item data-type="learn" data-keywords="participant pathway feasibility intake assessment housing plan transition follow up stabilization"><span>learn</span><strong>What a Participant Pathway to Housing Stability Should Look Like</strong><p>A flexible ten-stage pathway and HAA's clearly labeled Participant Pathway Feasibility framework.</p></a>
-            <a class="archive-result" href="documentation-matters.html" data-archive-item data-type="records" data-keywords="documentation administrative receipts intake assessment case notes referrals outcomes"><span>records</span><strong>Why Documentation Matters</strong><p>How administrative receipts support continuity, participant rights, provider management, oversight, and outcomes.</p></a>
-            <a class="archive-result" href="accountability-benefits.html" data-archive-item data-type="learn" data-keywords="accountability participants providers funders oversight management benefits"><span>learn</span><strong>How Administrative Accountability Benefits Participants and Providers</strong><p>Accountability as a practical management and public-interest tool for participants, providers, funders, and oversight bodies.</p></a>
-            <a class="archive-result" href="contact.html" data-archive-item data-type="site" data-keywords="contact corrections response research records email"><span>site</span><strong>Contact</strong><p>Public contact channels for corrections, responses, research, and records-verification correspondence.</p></a>
-            <a class="archive-result" href="updates.html" data-archive-item data-type="site" data-keywords="updates version history site publication changes"><span>site</span><strong>Updates</strong><p>A concise version history for public site improvements and publication-status changes.</p></a>
-            <p class="empty-state" data-archive-empty hidden>No matching pathway. Try a broader term or use All.</p>
-          </div>
+          <p class="archive-stats" aria-live="polite"><strong data-archive-count>0</strong> matching pathways</p>
+          <div class="archive-results" data-archive-results></div>
         </aside>
       </div>
     </section>
-    <section class="section featured oversight-update">
-      <div class="section-inner oversight-update-grid">
-        <div class="section-heading">
-          <p class="eyebrow">Public oversight action</p>
-          <h2>Administrative Oversight Referral HAA-OR-2026-001</h2>
-          <p>Targeted review request concerning publicly funded housing-program administration, contractor oversight, documentation controls, and housing stability.</p>
-        </div>
-        <article class="oversight-update-card" aria-labelledby="oversight-update-id">
-          <p class="oversight-card-line" id="oversight-update-id"><strong>HAA-OR-2026-001</strong></p>
-          <p class="oversight-card-line">Submitted to Los Angeles City Controller</p>
-          <p class="oversight-card-line"><time datetime="2026-08-05">August 5, 2026</time></p>
-          <span class="badge warning oversight-card-status">Pending Intake Review</span>
-          <a class="button" href="oversight-action-haa-or-2026-001.html">View public status entry</a>
-        </article>
-      </div>
-    </section>
-    <section class="section featured"><div class="section-inner"><div class="section-heading"><p class="eyebrow">Learning Center</p><h2>Understand the Administrative Pathway</h2><p>Explore how publicly funded housing programs are administered, what supportive services are intended to accomplish, why participant records matter, and how documentation can strengthen accountability for everyone involved.</p><div class="actions"><a class="button" href="learn.html">Explore the Learning Center</a></div></div></div></section>
     <section class="section">
       <div class="section-inner">
         <div class="section-heading">
-          <h2>Archive Purpose</h2>
-          <p>The archive separates documentation, analysis, confidentiality boundaries, and contact pathways so readers can understand the work without relying on raw sensitive records.</p>
+          <h2>What HAA Does</h2>
+          <p>HAA connects four functions: understand, navigate, verify, and account.</p>
         </div>
-        <div class="grid">
-          <article class="card"><span class="badge">Review</span><h3>Current oversight questions</h3><p>Track the questions currently organized for public-interest review: routing, records access, written determinations, and stabilization controls.</p><a href="current-review.html">View current review</a></article>
-          <article class="card"><span class="badge">Records</span><h3>Verification before publication</h3><p>Use structured availability labels to distinguish public summaries from redacted, controlled, private, or withheld materials.</p><a href="records-verification.html">Review verification protocol</a></article>
-          <article class="card"><span class="badge">Privacy</span><h3>Confidentiality by design</h3><p>Protect participant privacy, health information, private addresses, third-party identities, and sensitive evidence.</p><a href="confidentiality.html">Read confidentiality rules</a></article>
+        <div class="grid two">
+          <article class="card"><span class="badge">UNDERSTAND</span><h3>Understand the system.</h3><p>Plain-language resources explain how housing assistance, supportive services, documentation, participant pathways, and oversight are intended to work.</p><p class="meta"><strong>Learning Center</strong></p></article>
+          <article class="card"><span class="badge">NAVIGATE</span><h3>Navigate the process.</h3><p>HAA helps participants identify administrative pathways, organize information, communicate with housing programs, and understand the next step when a process becomes difficult to navigate.</p><a href="participant-support.html">Participant Support</a></article>
+          <article class="card"><span class="badge">VERIFY</span><h3>Verify the record.</h3><p>HAA organizes records, chronologies, source materials, and documentary limitations so administrative activity can be independently understood and checked.</p><a href="records-verification.html">Records Verification</a></article>
+          <article class="card"><span class="badge">ACCOUNT</span><h3>Examine the system.</h3><p>HAA identifies testable administrative questions, documents recurring control problems, and uses appropriate review and oversight channels when records raise broader public-interest concerns.</p><a href="current-review.html">Current Review</a></article>
         </div>
-      </div>
-    </section>
-    <section class="section alt related-initiative" id="related-initiative">
-      <div class="section-inner relationship-grid">
-        <div class="section-heading">
-          <p class="eyebrow">Related initiative</p>
-          <h2>Administrative Displacement</h2>
-          <p><a href="https://administrativedisplacement.org/" rel="external">AdministrativeDisplacement.org</a> develops the conceptual framework for examining when administrative process becomes a housing consequence. Housing Accountability Archive serves as the publication and documentation platform for records-centered public education, verification work, and public oversight-status entries.</p>
-          <p>The two sites maintain distinct purposes and use cross-links instead of duplicating material.</p>
-          <a class="button" href="https://administrativedisplacement.org/" rel="external">Explore Administrative Displacement</a>
-        </div>
-        <aside class="relationship-panel" aria-label="Relationship between the two projects">
-          <div class="relationship-role">
-            <span>Conceptual framework</span>
-            <strong>AdministrativeDisplacement.org</strong>
-            <p>Defines and develops the administrative-displacement framework.</p>
-          </div>
-          <div class="relationship-role">
-            <span>Publication and documentation platform</span>
-            <strong>HousingAccountabilityArchive.org</strong>
-            <p>Publishes records-centered resources, methods, and appropriately limited status entries.</p>
-          </div>
-        </aside>
       </div>
     </section>
     <section class="section alt">
       <div class="section-inner">
-        <div class="callout"><strong>Public-interest frame:</strong><p>This site presents participant-prepared systems analysis. It does not publish official legal findings, medical determinations, court findings, or agency determinations.</p></div>
+        <div class="grid two">
+          <div class="callout"><h2>Trying to navigate a housing program?</h2><p>HAA may be able to help you identify the administrative next step, organize the information you already have, prepare clearer questions, or understand where to seek help.</p><div class="actions"><a class="button" href="participant-support.html">Participant Support</a></div></div>
+          <div class="callout"><strong>Public-interest frame:</strong><p>This site presents participant-prepared systems analysis. It does not publish official legal findings, medical determinations, court findings, or agency determinations.</p></div>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="footer-inner"><div class="footer-grid"><div><h2>Housing Accountability Archive</h2><p>An independent, participant-founded public-interest documentation and records-verification project.</p></div><div><h3>Explore</h3><p><a href="updates.html">Updates</a> · <a href="contact.html">Contact</a></p><p class="footer-date">Site updated August 8, 2026</p></div><div class="footer-projects"><h3>Related Projects</h3><ul class="footer-links"><li><a href="https://housingaccountabilityarchive.org/">HousingAccountabilityArchive.org</a></li><li><a href="https://administrativedisplacement.org/" rel="external">AdministrativeDisplacement.org</a></li></ul></div></div><p class="footer-disclaimer">This website provides public education and records literacy. It is not legal or medical advice, does not determine compliance or liability, and does not publish unresolved participant-specific findings. Sensitive records are summarized, redacted, controlled, or withheld to protect privacy.</p></div></footer>
-  <script src="script.js?v=20260808"></script>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid"><div><h2>Housing Accountability Archive</h2><p>Participant-prepared public-interest case study and systems-analysis project.</p></div><div><h3>Last updated</h3><p>July 11, 2026</p><p><a href="contact.html">Submit correction or response</a></p></div></div>
+      <p class="footer-disclaimer">This website is a participant-prepared public-interest case study and records-analysis project. It is not legal advice, medical advice, or an official government finding. Materials are based on participant-preserved records, public records, correspondence, and good-faith chronology reconstruction. Sensitive records are summarized, redacted, controlled, or withheld to protect privacy, health information, third-party identities, private addresses, and sensitive documentation.</p>
+    </div>
+  </footer>
+  <script src="script.js?v=20260822"></script>
 </body>
 </html>
