@@ -1,6 +1,16 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
+// Surface the new technical-assistance offering in the existing navigation.
+// The page also includes a static link for browsers without JavaScript.
+if (siteNav && !siteNav.querySelector('a[href="technical-assistance.html"]')) {
+  const assistanceLink = document.createElement("a");
+  assistanceLink.href = "technical-assistance.html";
+  assistanceLink.textContent = "Technical Assistance";
+  const confidentialityLink = siteNav.querySelector('a[href="confidentiality.html"]');
+  siteNav.insertBefore(assistanceLink, confidentialityLink || null);
+}
+
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
@@ -88,7 +98,11 @@ function renderArchiveExplorer() {
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.archiveFilter || "all";
-      buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
+      buttons.forEach((candidate) => {
+        const selected = candidate === button;
+        candidate.classList.toggle("active", selected);
+        candidate.setAttribute("aria-pressed", String(selected));
+      });
       render();
     });
   });
@@ -97,43 +111,4 @@ function renderArchiveExplorer() {
   render();
 }
 
-function setupFilterableCards() {
-  const search = document.querySelector("[data-filter-search]");
-  const count = document.querySelector("[data-filter-count]");
-  const buttons = Array.from(document.querySelectorAll("[data-filter-button]"));
-  const items = Array.from(document.querySelectorAll("[data-filter-item]"));
-
-  if (!search || !count || buttons.length === 0 || items.length === 0) return;
-
-  let activeFilter = "all";
-
-  const applyFilter = () => {
-    const query = search.value.trim().toLowerCase();
-    let visibleCount = 0;
-
-    items.forEach((item) => {
-      const haystack = `${item.textContent} ${item.dataset.filterTags || ""}`.toLowerCase();
-      const matchesFilter = activeFilter === "all" || haystack.includes(activeFilter);
-      const matchesSearch = !query || haystack.includes(query);
-      const isVisible = matchesFilter && matchesSearch;
-      item.hidden = !isVisible;
-      if (isVisible) visibleCount += 1;
-    });
-
-    count.textContent = String(visibleCount);
-  };
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      activeFilter = button.dataset.filterButton || "all";
-      buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
-      applyFilter();
-    });
-  });
-
-  search.addEventListener("input", applyFilter);
-  applyFilter();
-}
-
 renderArchiveExplorer();
-setupFilterableCards();
