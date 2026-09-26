@@ -910,6 +910,99 @@ body.haa-home {
   }
 }
 
+
+/* --- mobile homepage polish: compact header + tighter hero --- */
+@media (max-width: 640px) {
+  .haa-home .nav-wrap {
+    min-height: 66px;
+    width: calc(100% - 28px);
+    padding: 10px 0;
+    gap: 8px;
+  }
+
+  .haa-home .site-header .brand {
+    max-width: calc(100% - 56px);
+  }
+
+  .haa-home .site-header .brand strong {
+    font-size: 0.96rem;
+    line-height: 1.15;
+  }
+
+  .haa-home .site-header .brand span {
+    margin-top: 3px;
+    font-size: 0.58rem;
+    line-height: 1.25;
+    letter-spacing: 0.055em;
+  }
+
+  .haa-home .menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .haa-home .site-nav {
+    padding-top: 6px;
+    padding-bottom: 0;
+  }
+
+  .haa-home .site-nav a {
+    padding: 9px 0;
+    font-size: 0.86rem;
+  }
+
+  .haa-home .hero {
+    padding: 38px 0 42px;
+  }
+
+  .haa-home .hero-grid {
+    gap: 24px;
+  }
+
+  .haa-home .hero .eyebrow {
+    margin-bottom: 12px;
+    font-size: 0.67rem;
+    line-height: 1.45;
+    letter-spacing: 0.115em;
+  }
+
+  .haa-home .hero h1 {
+    font-size: clamp(2.35rem, 11.4vw, 3.35rem);
+    line-height: 1.01;
+    letter-spacing: -0.032em;
+  }
+
+  .haa-home .hero-lede {
+    margin-top: 20px;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .haa-home .hero-actions {
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .haa-home .hero-actions .button {
+    min-height: 46px;
+    padding: 10px 14px;
+  }
+
+  .haa-home .hero-question {
+    margin-top: 2px;
+    padding: 18px 0 0 16px;
+  }
+
+  .haa-home .hero-question .question-label {
+    margin-bottom: 9px;
+  }
+
+  .haa-home .question-text {
+    font-size: 1.26rem;
+    line-height: 1.35;
+  }
+}
+
   </style>
 </head>
 
