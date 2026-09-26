@@ -122,6 +122,96 @@ body.haa-home {
   color: var(--haa-accent);
 }
 
+/* Header/nav styles for the shared site markup used on this page */
+.nav-wrap {
+  width: min(calc(100% - 40px), var(--haa-max));
+  margin-inline: auto;
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.site-header .brand {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1.2;
+  flex: 0 0 auto;
+}
+
+.site-header .brand strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  color: var(--haa-ink);
+}
+
+.site-header .brand span {
+  margin-top: 5px;
+  color: var(--haa-ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--haa-ink-soft);
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 650;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a[aria-current="page"] {
+  color: var(--haa-accent);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--haa-line);
+  border-radius: 2px;
+  color: var(--haa-ink);
+  cursor: pointer;
+}
+
+.menu-toggle-lines,
+.menu-toggle-lines::before,
+.menu-toggle-lines::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.menu-toggle-lines {
+  position: relative;
+}
+
+.menu-toggle-lines::before,
+.menu-toggle-lines::after {
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle-lines::before { top: -6px; }
+.menu-toggle-lines::after { top: 6px; }
+
 .hero {
   padding: 96px 0 88px;
   border-bottom: 1px solid var(--haa-line);
@@ -572,6 +662,57 @@ body.haa-home {
 
 .footer-note p {
   line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+  .nav-wrap {
+    min-height: 74px;
+    width: min(calc(100% - 32px), var(--haa-max));
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+    padding: 8px 0 4px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    border-top: 1px solid var(--haa-line);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 2px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(20, 32, 41, 0.08);
+  }
+
+  .site-header .brand {
+    max-width: calc(100% - 62px);
+  }
+
+  .site-header .brand strong {
+    font-size: 1rem;
+  }
+
+  .site-header .brand span {
+    font-size: 0.64rem;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+  }
 }
 
 @media (max-width: 980px) {
@@ -1028,5 +1169,6 @@ body.haa-home {
   </main>
 
   <footer class="site-footer"><div class="footer-inner"><div class="footer-grid"><div><h2>Housing Accountability Archive</h2><p>An independent, participant-founded public-interest documentation and records-verification project.</p></div><div><h3>Explore</h3><p><a href="updates.html">Updates</a> · <a href="contact.html">Contact</a></p><p class="footer-date">Site updated September 26, 2026</p></div><div class="footer-projects"><h3>Related Projects</h3><ul class="footer-links"><li><a href="https://administrativedisplacement.org/" rel="external">AdministrativeDisplacement.org</a></li><li><a href="https://walterescobar.org/" rel="external">WalterEscobar.org — Founder &amp; Publisher</a></li></ul></div></div><p class="footer-disclaimer">This website provides public education and records literacy. It is not legal or medical advice, does not determine compliance or liability, and does not publish unresolved participant-specific findings. Sensitive records are summarized, redacted, controlled, or withheld to protect privacy.</p></div></footer>
+  <script src="script.js?v=20260926"></script>
 </body>
 </html>
