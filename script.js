@@ -1,17 +1,15 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
-// Surface the new technical-assistance offering in the existing navigation.
-// The page also includes a static link for browsers without JavaScript.
-if (siteNav && !siteNav.querySelector('a[href="technical-assistance.html"]')) {
-  const assistanceLink = document.createElement("a");
-  assistanceLink.href = "technical-assistance.html";
-  assistanceLink.textContent = "Technical Assistance";
-  const confidentialityLink = siteNav.querySelector('a[href="confidentiality.html"]');
-  siteNav.insertBefore(assistanceLink, confidentialityLink || null);
-}
-
 if (menuToggle && siteNav) {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+      menuToggle.focus();
+    }
+  });
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
