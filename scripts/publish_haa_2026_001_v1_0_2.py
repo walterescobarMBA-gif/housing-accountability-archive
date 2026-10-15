@@ -14,8 +14,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "HAA_2026_001_Annual_Compliance_Review_v1.0.1_DATE_CORRECTION.pdf"
 OUTPUT = ROOT / "HAA_2026_001_Annual_Compliance_Review_v1.0.2.pdf"
 LOG = ROOT / "HAA_Correction_Log_v1.0.2.pdf"
-SERIF = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
-SANS = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
+from subprocess import check_output
+SERIF = check_output(["fc-match", "-f", "%{file}", "Liberation Serif"]).decode().strip()
+SANS = check_output(["fc-match", "-f", "%{file}", "Liberation Sans"]).decode().strip()
 BLACK = (0.121, 0.16, 0.215)
 
 def line(page, old, new, size, family):
