@@ -1,0 +1,35 @@
+name: Publish HAA 2026-001 v1.0.2
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-haa-2026-001-v1.0.2.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current HAA site
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install font and PDF utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-liberation fontconfig
+          python -m pip install --disable-pip-version-check pymupdf reportlab
+      - name: Build corrected public report and correction log
+        run: python scripts/publish_haa_2026_001_v1_0_2.py
+      - name: Commit versioned PDFs without overwriting v1.0.1
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add HAA_2026_001_Annual_Compliance_Review_v1.0.2.pdf HAA_Correction_Log_v1.0.2.pdf
+          git diff --cached --quiet || git commit -m 'Publish HAA-2026-001 v1.0.2 and correction log'
+          git push
