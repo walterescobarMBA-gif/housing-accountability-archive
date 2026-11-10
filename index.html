@@ -1004,6 +1004,10 @@ body.haa-home {
   }
 }
 
+/* Five work areas; retain the existing four-column publication grid. */
+.work .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 980px) { .work .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .work .card-grid { grid-template-columns: 1fr; } }
   </style>
 <link rel="stylesheet" href="navigation.css?v=20260929"></head>
 
@@ -1114,6 +1118,15 @@ body.haa-home {
           </article>
         </div>
       </div>
+          <article class="work-card">
+            <p class="card-number">05</p>
+            <h3>Participant advocacy</h3>
+            <p>
+              With participant authorization, document housing decisions, challenge case closures,
+              seek written explanations, and advocate for safe housing transitions and continuity of assistance.
+            </p>
+            <a href="participant-support.html#advocacy">Explore participant advocacy</a>
+          </article>
     </section>
 
     <section class="current section">
