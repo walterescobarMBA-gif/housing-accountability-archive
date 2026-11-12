@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
   <title id="title">Housing Accountability Archive</title>
-  <rect width="64" height="64" rx="12" fill="#0f172a"/>
-  <path d="M14 30 32 16l18 14v22H14V30Z" fill="#dbeafe"/>
-  <path d="M22 52V34h20v18" fill="#2563eb"/>
-  <path d="M24 42h16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <desc id="desc">HAA monogram in ivory on charcoal with a deep red underline.</desc>
+  <rect width="64" height="64" rx="12" fill="#17242c"/>
+  <text x="32" y="38" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="-1.5">HAA</text>
+  <rect x="12" y="45" width="40" height="3" rx="1" fill="#8d2d2a"/>
 </svg>
