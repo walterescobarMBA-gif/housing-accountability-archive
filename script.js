@@ -1,3 +1,33 @@
+// Add a consistent, accessible Ko-fi support link across HAA pages.
+const haaSupportUrl = "https://ko-fi.com/housingaccountabilityarchive";
+
+document.querySelectorAll(".site-nav").forEach((navigation) => {
+  if (navigation.querySelector('a[data-haa-support], a[href="' + haaSupportUrl + '"]')) return;
+  const supportLink = document.createElement("a");
+  supportLink.href = haaSupportUrl;
+  supportLink.textContent = "Support HAA";
+  supportLink.target = "_blank";
+  supportLink.rel = "noopener noreferrer";
+  supportLink.dataset.haaSupport = "";
+  navigation.append(supportLink);
+});
+
+document.querySelectorAll(".site-footer").forEach((footer) => {
+  if (footer.querySelector('a[data-haa-support], a[href="' + haaSupportUrl + '"]')) return;
+  const destination = footer.querySelector(".footer-inner") || footer;
+  const paragraph = document.createElement("p");
+  paragraph.className = "haa-footer-support";
+  paragraph.append("Help sustain independent investigations and housing rights advocacy: ");
+  const link = document.createElement("a");
+  link.href = haaSupportUrl;
+  link.textContent = "Support HAA on Ko-fi";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.dataset.haaSupport = "";
+  paragraph.append(link);
+  destination.append(paragraph);
+});
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
