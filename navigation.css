@@ -123,3 +123,87 @@
 }
 .site-footer .haa-footer-support a:hover,
 .site-footer .haa-footer-support a:focus-visible { text-decoration: underline; }
+
+/* HAA mobile navigation: grouped links, clear scan hierarchy, and a distinct supporter action. */
+.site-header .site-nav .nav-section-label { display: none; }
+.site-header .site-nav a[data-haa-support] {
+  color: #fff;
+  background: #8d2d2a;
+  border: 1px solid #8d2d2a;
+  border-radius: 4px;
+  padding: 9px 13px;
+}
+.site-header .site-nav a[data-haa-support]:hover,
+.site-header .site-nav a[data-haa-support]:focus-visible {
+  color: #fff;
+  background: #6f211f;
+  border-color: #6f211f;
+}
+@media (max-width: 1100px) {
+  .site-header .site-nav {
+    gap: 0;
+    padding: 10px 12px 14px;
+    background: #f7f6f2;
+    border: 1px solid #d7d9d7;
+    border-radius: 5px;
+    box-shadow: 0 12px 28px rgba(20, 32, 41, 0.09);
+  }
+  .site-header .site-nav .nav-section-label {
+    display: block;
+    width: 100%;
+    padding: 13px 10px 7px;
+    margin: 9px 0 2px;
+    color: #68757b;
+    font-size: .68rem;
+    line-height: 1.35;
+    letter-spacing: .12em;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-top: 1px solid #d7d9d7;
+  }
+  .site-header .site-nav .nav-section-label:first-child {
+    margin-top: 0;
+    padding-top: 4px;
+    border-top: 0;
+  }
+  .site-header .site-nav a:not([data-haa-support]) {
+    min-height: 46px;
+    margin: 0;
+    padding: 11px 12px;
+    font-size: .92rem;
+    font-weight: 600;
+    line-height: 1.4;
+    border: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-header .site-nav a:not([data-haa-support])::after {
+    content: "›";
+    margin-left: 16px;
+    color: #8a9598;
+    font-size: 1.35rem;
+    font-weight: 400;
+  }
+  .site-header .site-nav a:not([data-haa-support]):hover,
+  .site-header .site-nav a:not([data-haa-support]):focus-visible,
+  .site-header .site-nav a:not([data-haa-support])[aria-current] {
+    background: #ebece7;
+    color: #8d2d2a;
+  }
+  .site-header .site-nav a:not([data-haa-support])[aria-current] {
+    box-shadow: inset 3px 0 #8d2d2a;
+    font-weight: 750;
+  }
+  .site-header .site-nav a[data-haa-support] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 47px;
+    margin: 7px 0 0;
+    font-size: .93rem;
+    font-weight: 750;
+  }
+}
