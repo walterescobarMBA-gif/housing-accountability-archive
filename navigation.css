@@ -107,3 +107,19 @@
   .js .site-header .site-nav:not(.is-open) {display: none;}
   .site-header .site-nav a {width: 100%; padding: 10px 8px; border-bottom: 1px solid #e0e2df;}
 }
+
+/* Cross-page HAA supporter link injected by script.js. */
+.site-footer .haa-footer-support {
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(200, 210, 214, 0.25);
+  font-size: .875rem;
+  line-height: 1.6;
+}
+.site-footer .haa-footer-support a {
+  color: inherit;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+.site-footer .haa-footer-support a:hover,
+.site-footer .haa-footer-support a:focus-visible { text-decoration: underline; }
