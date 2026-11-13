@@ -1012,13 +1012,26 @@ body.haa-home {
 .work .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 980px) { .work .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .work .card-grid { grid-template-columns: 1fr; } }
+
+/* Ko-fi integration: support panel consistent with HAA's editorial design. */
+.haa-support-panel { background: #f0efe9; border-top: 1px solid var(--haa-line); border-bottom: 1px solid var(--haa-line); }
+.haa-support-grid { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(250px,.65fr); align-items: center; gap: 60px; }
+.haa-support-panel h2 { margin: 0 0 18px; font: 500 clamp(2rem,4vw,3.4rem)/1.15 Georgia,"Times New Roman",serif; letter-spacing: -.025em; }
+.haa-support-panel p { margin: 0 0 16px; color: var(--haa-ink-soft); }
+.haa-support-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; border-left: 3px solid var(--haa-accent); padding-left: 28px; }
+.haa-support-cta .button { max-width: 100%; }
+.haa-support-cta .haa-support-note { margin: 0; font-size: .83rem; line-height: 1.55; }
+@media (max-width: 760px) {
+  .haa-support-grid { grid-template-columns: 1fr; gap: 26px; }
+  .haa-support-cta { border-left: none; border-top: 2px solid var(--haa-accent); padding: 22px 0 0; }
+}
   </style>
 <link rel="stylesheet" href="navigation.css?v=20260929"></head>
 
 <body class="haa-home" style="margin:0;background:#f7f6f2;color:#142029;">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Documenting Housing. Advancing Accountability.</span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-lines"></span></button><nav class="site-nav" id="primary-navigation" aria-label="Primary navigation"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="publications.html">Publications</a><a href="participant-support.html#advocacy">Advocacy</a><a href="learn.html">Learn</a><a href="records-verification.html">Records Verification</a><a href="contact.html">Contact</a></nav></div></header>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Documenting Housing. Advancing Accountability.</span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-lines"></span></button><nav class="site-nav" id="primary-navigation" aria-label="Primary navigation"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="publications.html">Publications</a><a href="participant-support.html#advocacy">Advocacy</a><a href="learn.html">Learn</a><a href="records-verification.html">Records Verification</a><a href="contact.html">Contact</a><a href="https://ko-fi.com/housingaccountabilityarchive" target="_blank" rel="noopener noreferrer" data-haa-support>Support HAA</a></nav></div></header>
 
   <main id="main-content">
     <section class="hero">
@@ -1300,6 +1313,22 @@ body.haa-home {
       </div>
     </section>
 
+
+    <section class="section haa-support-panel" id="support-haa" aria-labelledby="support-haa-title">
+      <div class="shell haa-support-grid">
+        <div>
+          <p class="section-kicker">Support HAA</p>
+          <h2 id="support-haa-title">Sustain the investigation. Strengthen the advocacy.</h2>
+          <p>Housing Accountability Archive combines independent investigative reporting, documentary research, and housing rights advocacy to examine how publicly funded housing programs operate and how administrative decisions affect participants.</p>
+          <p>Your support helps fund records acquisition, evidence verification, public-interest publications, and participant-informed accountability work. Public findings remain accessible to everyone, and contributions do not influence investigative conclusions or determine access to advocacy.</p>
+        </div>
+        <div class="haa-support-cta">
+          <a class="button button-primary" href="https://ko-fi.com/housingaccountabilityarchive" target="_blank" rel="noopener noreferrer" data-haa-support>Support HAA on Ko-fi</a>
+          <p class="haa-support-note">One-time contributions and monthly memberships are available. Contributions are not represented as tax-deductible charitable donations.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="closing section">
       <div class="shell narrow">
         <p class="section-kicker">The standard</p>
@@ -1314,7 +1343,7 @@ body.haa-home {
     </section>
   </main>
 
-  <footer class="site-footer"><div class="footer-inner"><div class="footer-grid"><div><h2>Housing Accountability Archive</h2><p>An independent, participant-founded public-interest documentation and records-verification project.</p></div><div><h3>Explore</h3><p><a href="updates.html">Updates</a> · <a href="contact.html">Contact</a></p><p class="footer-date">Site updated November 9, 2026</p></div><div class="footer-projects"><h3>Related Projects</h3><ul class="footer-links"><li><a href="https://administrativedisplacement.org/" rel="external">AdministrativeDisplacement.org</a></li><li><a href="https://walterescobar.org/" rel="external">WalterEscobar.org — Founder &amp; Publisher</a></li></ul></div></div><p class="footer-disclaimer">This website provides public education and records literacy. It is not legal or medical advice, does not determine compliance or liability, and does not publish unresolved participant-specific findings. Sensitive records are summarized, redacted, controlled, or withheld to protect privacy.</p></div></footer>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-grid"><div><h2>Housing Accountability Archive</h2><p>An independent, participant-founded public-interest documentation and records-verification project.</p></div><div><h3>Explore</h3><p><a href="updates.html">Updates</a> · <a href="contact.html">Contact</a> · <a href="https://ko-fi.com/housingaccountabilityarchive" target="_blank" rel="noopener noreferrer" data-haa-support>Support HAA</a></p><p class="footer-date">Site updated November 13, 2026</p></div><div class="footer-projects"><h3>Related Projects</h3><ul class="footer-links"><li><a href="https://administrativedisplacement.org/" rel="external">AdministrativeDisplacement.org</a></li><li><a href="https://walterescobar.org/" rel="external">WalterEscobar.org — Founder &amp; Publisher</a></li></ul></div></div><p class="footer-disclaimer">This website provides public education and records literacy. It is not legal or medical advice, does not determine compliance or liability, and does not publish unresolved participant-specific findings. Sensitive records are summarized, redacted, controlled, or withheld to protect privacy.</p></div></footer>
   <script src="script.js?v=20260929-nav"></script>
 </body>
 </html>
