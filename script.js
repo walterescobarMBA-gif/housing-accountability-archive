@@ -28,6 +28,34 @@ document.querySelectorAll(".site-footer").forEach((footer) => {
   destination.append(paragraph);
 });
 
+
+// Present a visually grouped mobile menu while preserving the desktop navigation.
+document.querySelectorAll(".site-nav").forEach((navigation) => {
+  if (navigation.querySelector(".nav-section-label")) return;
+
+  const findLink = (label) => Array.from(navigation.querySelectorAll("a"))
+    .find((link) => link.textContent.trim() === label);
+
+  // Keep learning resources together, with verification before general learning.
+  const recordsLink = findLink("Records Verification");
+  const learnLink = findLink("Learn");
+  if (recordsLink && learnLink) navigation.insertBefore(recordsLink, learnLink);
+
+  [
+    { before: "Home", label: "Explore HAA" },
+    { before: "Advocacy", label: "Research & Advocacy" },
+    { before: "Contact", label: "Connect & Support" }
+  ].forEach(({ before, label }) => {
+    const link = findLink(before);
+    if (!link) return;
+    const heading = document.createElement("span");
+    heading.className = "nav-section-label";
+    heading.textContent = label;
+    heading.setAttribute("aria-hidden", "true");
+    navigation.insertBefore(heading, link);
+  });
+});
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 
