@@ -1,0 +1,29 @@
+/* HAA research and advocacy two-track access, November 2026 */
+.mission-lanes{background:#fff;border-bottom:1px solid #d7d9d7}
+.mission-intro{max-width:850px;margin-bottom:30px}
+.mission-intro h2,.evidence-spotlight h2{font:500 clamp(2rem,4vw,3.35rem)/1.14 Georgia,"Times New Roman",serif;letter-spacing:-.02em;margin:0 0 16px;color:#142029}
+.mission-intro p,.evidence-spotlight p{color:#3d4a52}
+.mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mission-card{display:flex;flex-direction:column;padding:32px;background:#f7f6f2;border:1px solid #d7d9d7;border-top:4px solid #17242c}
+.mission-card.mission-advocacy{border-top-color:#8d2d2a;background:#fbf7f5}
+.mission-type{color:#8d2d2a;font-size:.77rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.mission-card h3{font:500 clamp(1.45rem,2.7vw,2rem)/1.24 Georgia,"Times New Roman",serif;margin:4px 0 12px;color:#142029}
+.mission-card>p:not(.mission-type){color:#39454e;line-height:1.7}
+.mission-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:auto;padding-top:15px}
+.mission-links a{font-weight:750;color:#8d2d2a;text-decoration:underline;text-underline-offset:4px}
+.evidence-spotlight{background:#efeee8;border-bottom:1px solid #d7d9d7}
+.evidence-inner{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.7fr);gap:50px;align-items:center}
+.evidence-numbers{display:grid;gap:14px}
+.evidence-numbers>div{background:#fff;border-left:4px solid #8d2d2a;padding:19px 23px}
+.evidence-numbers strong{display:block;color:#142029;font:500 2.15rem/1.1 Georgia,"Times New Roman",serif;margin-bottom:6px}
+.evidence-numbers span{font-size:.89rem;color:#3d4a52}
+.haa-advocacy-distinction{padding:30px 0 20px}
+.haa-advocacy-distinction .callout{border-left:4px solid #8d2d2a}
+.intake-note,.haa-page-note{border-left:4px solid #8d2d2a;background:#f7f6f2;padding:18px 24px}
+.haa-data-table{border-collapse:collapse;width:100%;background:#fff}
+.haa-data-table th,.haa-data-table td{text-align:left;border-bottom:1px solid #d7d9d7;padding:15px;vertical-align:top}
+.haa-data-table th{background:#e9eceb;color:#142029}
+.haa-data-table a{overflow-wrap:anywhere}
+.haa-table-scroll{overflow-x:auto}
+.haa-home .mission-card a:focus-visible,.haa-home .evidence-spotlight a:focus-visible{outline:3px solid #8d2d2a;outline-offset:4px}
+@media(max-width:760px){.mission-grid,.evidence-inner{grid-template-columns:1fr}.mission-card{padding:24px}.haa-data-table{min-width:580px}}
