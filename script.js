@@ -1,3 +1,26 @@
+// Keep the same research, advocacy and support destinations on older static pages.
+document.querySelectorAll(".site-nav").forEach((navigation) => {
+  const destinations = [
+    ["index.html","Home"],["findings.html","Findings"],["publications.html","Publications"],
+    ["participant-support.html#advocacy","Participant Advocacy"],["learn.html","Learn"],
+    ["records-verification.html","Records Verification"],["about.html","About"],["contact.html","Contact"]
+  ];
+  const oldLinks = Array.from(navigation.querySelectorAll("a"));
+  const page = window.location.pathname.split("/").pop() || "index.html";
+  const support = oldLinks.find(a=>a.hasAttribute("data-haa-support") || a.href==="https://ko-fi.com/housingaccountabilityarchive");
+  navigation.textContent = "";
+  destinations.forEach(([href,label])=>{
+    const link=document.createElement("a");
+    link.href=href; link.textContent=label;
+    if(page===href.split("#")[0])link.setAttribute("aria-current","page");
+    navigation.append(link);
+  });
+  const link = support || document.createElement("a");
+  link.href="https://ko-fi.com/housingaccountabilityarchive";link.textContent="Support HAA";
+  link.target="_blank";link.rel="noopener noreferrer";link.dataset.haaSupport="";
+  navigation.append(link);
+});
+
 // Add a consistent, accessible Ko-fi support link across HAA pages.
 const haaSupportUrl = "https://ko-fi.com/housingaccountabilityarchive";
 
@@ -43,7 +66,8 @@ document.querySelectorAll(".site-nav").forEach((navigation) => {
 
   [
     { before: "Home", label: "Explore HAA" },
-    { before: "Advocacy", label: "Research & Advocacy" },
+    { before: "Findings", label: "Investigations & Evidence" },
+    { before: "Participant Advocacy", label: "Participant advocacy" },
     { before: "Contact", label: "Connect & Support" }
   ].forEach(({ before, label }) => {
     const link = findLink(before);
