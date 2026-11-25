@@ -1008,10 +1008,22 @@ body.haa-home {
   }
 }
 
-/* Five work areas; retain the existing four-column publication grid. */
-.work .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-@media (max-width: 980px) { .work .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .work .card-grid { grid-template-columns: 1fr; } }
+/* Balance five-card sections without changing the existing editorial style. */
+.work .card-grid, .publication-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.work .card-grid > .work-card, .publication-grid > .work-card { grid-column: span 2; }
+.work .card-grid > .work-card:nth-child(n+4), .publication-grid > .work-card:nth-child(n+4) { grid-column: span 3; }
+.research-progress .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 980px) {
+ .work .card-grid, .publication-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .work .card-grid > .work-card, .publication-grid > .work-card { grid-column: span 1; }
+ .work .card-grid > .work-card:nth-child(n+4), .publication-grid > .work-card:nth-child(n+4) { grid-column: span 1; }
+ .work .card-grid > .work-card:last-child, .publication-grid > .work-card:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+ .work .card-grid, .publication-grid, .research-progress .card-grid { grid-template-columns: 1fr; }
+ .work .card-grid > .work-card, .publication-grid > .work-card { grid-column: 1; }
+ .work .card-grid > .work-card:nth-child(n+4), .publication-grid > .work-card:nth-child(n+4) { grid-column: 1; }
+}
 
 /* Ko-fi integration: support panel consistent with HAA's editorial design. */
 .haa-support-panel { background: #f0efe9; border-top: 1px solid var(--haa-line); border-bottom: 1px solid var(--haa-line); }
@@ -1031,7 +1043,7 @@ body.haa-home {
 <body class="haa-home" style="margin:0;background:#f7f6f2;color:#142029;">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Documenting Housing. Advancing Accountability.</span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-lines"></span></button><nav class="site-nav" id="primary-navigation" aria-label="Primary navigation"><a href="index.html" aria-current="page">Home</a><a href="findings.html">Findings</a><a href="publications.html">Publications</a><a href="participant-support.html#advocacy">Participant Advocacy</a><a href="learn.html">Learn</a><a href="records-verification.html">Records Verification</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="https://ko-fi.com/housingaccountabilityarchive" target="_blank" rel="noopener noreferrer" data-haa-support>Support HAA</a></nav></div></header>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><strong>Housing Accountability Archive</strong><span>Documenting Housing. Advancing Accountability.</span></a><button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-lines"></span></button><nav class="site-nav" id="primary-navigation" aria-label="Primary navigation"><a href="index.html" aria-current="page">Home</a><a href="findings.html">Findings</a><a href="publications.html">Publications</a><a href="participant-support.html#advocacy">Participant Advocacy</a><a href="records-verification.html">Records Verification</a><a href="learn.html">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="https://ko-fi.com/housingaccountabilityarchive" target="_blank" rel="noopener noreferrer" data-haa-support>Support HAA</a></nav></div></header>
 
   <main id="main-content">
     <section class="hero">
@@ -1063,7 +1075,7 @@ body.haa-home {
 
 
     <section class="mission-lanes section" id="our-work" aria-labelledby="two-tracks-heading"><div class="shell">
-      <div class="mission-intro"><p class="section-kicker">What we do</p><h2 id="two-tracks-heading">Two connected missions. Clearly separate work.</h2><p>Housing Accountability Archive publishes independent investigations and also supports participant-directed administrative advocacy. Both are visible here, but private participant files and advocacy communications are not automatically investigative reporting materials.</p></div>
+      <div class="mission-intro"><p class="section-kicker">What we do</p><h2 id="two-tracks-heading">Two connected missions. Clearly separate work.</h2><p>Housing Accountability Archive publishes independent investigations and also supports participant-directed administrative advocacy. Community education connects these efforts by making administrative processes and records literacy accessible. Private participant files and advocacy communications are not automatically investigative reporting materials.</p></div>
       <div class="mission-grid">
         <article class="mission-card mission-investigations"><p class="mission-type">01 / Independent investigations</p><h3>Examine the records. Test institutional accountability.</h3><p>Read published findings, primary monitoring reports, governing standards, institutional responses, and the questions that available records have not resolved.</p><div class="mission-links"><a href="findings.html">Explore source-linked findings →</a><a href="publications.html">Read investigations and analysis →</a></div></article>
         <article class="mission-card mission-advocacy"><p class="mission-type">02 / Participant-directed advocacy</p><h3>Help participants navigate and challenge housing decisions.</h3><p>With authorization, HAA helps organize records, communicate questions, seek review of case closures, and document safety or housing-continuity concerns. Individual matters stay separate from editorial publication.</p><div class="mission-links"><a href="participant-support.html#advocacy">Explore participant advocacy →</a><a href="contact.html#participant-navigation">Ask about advocacy →</a></div></article>
@@ -1191,7 +1203,7 @@ body.haa-home {
           <p>HAA publishes standards-based reviews, documentary analysis, and accountability reporting grounded in primary records.</p>
         </div>
         <p class="section-intro"><strong>Latest publication · October 27, 2026; updated November 13:</strong> <a href="housing-oversight-requirements-implementation-enforcement.html">Are the Requirements Inadequate, or Are Existing Requirements Being Inadequately Implemented, Monitored, and Enforced?</a> — <strong>zero substantive responses received</strong> from the housing-provider and oversight institutions approached for comment following the November 2 deadline.</p>
-        <div class="card-grid">
+        <div class="card-grid publication-grid">
           <article class="work-card"><p class="card-number">UPDATED · NOV 13</p><h3>Housing oversight: requirements, implementation, and enforcement</h3><p>Published October 27, 2026. Following the November 2 deadline, HAA has received zero substantive institutional responses to its documented accountability questions. The record remains open to verifiable corrections and supporting evidence.</p><a href="housing-oversight-requirements-implementation-enforcement.html">Read the analysis and response-status update →</a></article>
           <article class="work-card"><p class="card-number">01</p><h3>HAA-2026-001</h3><p>Annual Compliance Review: Public Housing Program Administration.</p><a href="current-review.html">Read the review →</a></article>
           <article class="work-card"><p class="card-number">02</p><h3>Administrative Displacement</h3><p>When routine administrative procedure becomes consequential to housing stability.</p><a href="administrative-displacement-analysis.html">Read the article →</a></article>
@@ -1201,6 +1213,13 @@ body.haa-home {
       </div>
     </section>
 
+    <section class="section research-progress" id="research-progress">
+      <div class="shell"><div class="section-heading"><div><p class="section-kicker">Research progression</p><h2>From participant experience to institutional accountability.</h2></div><p>The foundational investigation established a method. The next stage is to examine how that method applies across independent participant experiences.</p></div>
+        <div class="card-grid"><article class="work-card"><p class="card-number">PHASE I · COMPLETED</p><h3>Foundational investigation</h3><p>Reconstruct the administrative record, test it against applicable requirements, document findings and limitations, and publish the Annual Compliance Review.</p><a href="current-review.html">Read HAA-2026-001 →</a></article>
+        <article class="work-card"><p class="card-number">PHASE II · IN DEVELOPMENT</p><h3>Comparative participant research</h3><p>Apply the method independently to additional participant experiences to identify recurring administrative practices, differences, and unresolved questions. Participation is voluntary and subject to consent and privacy safeguards.</p><a href="#research-in-development">Explore the proposed research →</a></article>
+        <article class="work-card"><p class="card-number">PHASE III · LONGER-TERM OBJECTIVE</p><h3>System-level accountability</h3><p>Combine independently verified case-level evidence with program records, oversight materials, and institutional responses to examine broader administrative practices and opportunities for improvement.</p><a href="records-verification.html">See the verification method →</a></article></div>
+        <p class="section-intro">The companion <a href="https://administrativedisplacement.org/">Administrative Displacement</a> framework explains the underlying problem. HAA investigates the record, supports participant-directed advocacy, and develops public education resources. Advocacy files remain separate from editorial research.</p></div>
+    </section>
     <section class="section" id="research-in-development">
       <div class="shell">
         <div class="section-heading">
